@@ -1,0 +1,11 @@
+$accordion-button-color:  #000 !important;
+$accordion-button-active-color: #000 !important;
+$accordion-button-active-bg: transparent !important;
+$accordion-button-focus-border-color: transparent !important;
+$accordion-button-focus-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0) !important;
+// $accordion-transition: transform 20s height .15s ease;
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import '../node_modules/bootstrap/scss/accordion.scss';

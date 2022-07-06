@@ -1,0 +1,82 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Raleway' !important;
+}
+
+a {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 200;
+  
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+p {
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 24px;
+}
+
+ul {
+  margin-top: 15px;
+}
+
+.accordion-light button {
+  background-color: #fff !important;
+}
+
+.accordion-light .accordion-item {
+  border-bottom: 0.25px solid rgba(0, 0, 0, 0.125) !important;
+}
+
+.accordion-light .accordion-body { 
+  border-top: 0.25px solid rgba(0, 0, 0, 0.125) !important;
+}
+
+/* CSS for Accordions */
+.accordion-dark button {
+  background-color: #12162b !important;
+  
+}
+
+.accordion-dark div {
+  color: #fff !important;
+  background-color: #12162b !important;
+}
+
+.accordion-dark .accordion-button::after {
+  filter: invert(1);
+  
+}
+
+.accordion-dark .accordion-button:not(.collapsed)::after {
+  filter: invert(0.5)
+  
+}
+
+.accordion-dark .accordion-item {
+  border-bottom: 0.25px solid #fff !important;
+}
+
+.accordion-dark .accordion-body { 
+  border-top: 0.25px solid #fff !important;
+}
