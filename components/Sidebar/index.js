@@ -68,7 +68,7 @@ const SidebarContent = ({ variants }) => {
         >
           <SidebarLiIcon src={icon_src} />
 
-          <SidebarLiText href={link} target="_blank">
+          <SidebarLiText href={link} target="_blank" rel="noreferrer">
             {name}
           </SidebarLiText>
         </SidebarLi>

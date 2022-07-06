@@ -65,7 +65,11 @@ const Navbar = ({ toggle }) => {
         <NavMenuNonMobile>
           <NavItem>
             <NavExternalLinks>
-              <a href="https://www.theageofnano.com/" target="_blank">
+              <a
+                href="https://www.theageofnano.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 The Age of Nano
               </a>
             </NavExternalLinks>
