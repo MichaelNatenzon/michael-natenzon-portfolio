@@ -7,7 +7,7 @@ export const FooterContainer = styled.div`
   z-index: 1;
   width: 100%;
   padding: 20px 0px 15px 0px;
-  background: #12162b;
+  background-color: #12162b;
 
   border-top: 0.001vh solid #ebebeb;
 `;
@@ -19,4 +19,5 @@ export const FooterContent = styled.div`
   text-align: center;
   font-weight: 200;
   color: #fff;
+  background-color: #12162b;
 `;
