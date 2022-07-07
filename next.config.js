@@ -3,7 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     loader: "custom",
-    path: "https://storageapi.fleek.co/9af46b24-5f02-47d2-8630-e581e7c13aeb-bucket/",
   },
 };
 

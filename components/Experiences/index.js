@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { animateScroll as scroll } from "react-scroll/modules";
-import Image from "next/image";
+// import Image from "next/image";
+import Image from "components/Image";
 
 import {
   ExperienceBackdrop,
