@@ -14,3 +14,11 @@ const defaultConfig = (phase, { defaultConfig }) => {
 };
 
 (module.exports = nextConfig), defaultConfig;
+
+module.exports = {
+  experimental: {
+    images: {
+      unoptimized: true,
+    },
+  },
+};
