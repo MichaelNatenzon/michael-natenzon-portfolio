@@ -10,13 +10,15 @@ const Footer = () => {
     scroll.scrollToTop();
   };
   return (
-    <FooterContainer>
-      <FooterContent>
-        Michael Natenzon. All rights reserved.
-        <br />
-        Copyright © {new Date().getFullYear()}
-      </FooterContent>
-    </FooterContainer>
+    <div>
+      <FooterContainer>
+        <FooterContent>
+          Michael Natenzon. All rights reserved.
+          <br />
+          Copyright © {new Date().getFullYear()}
+        </FooterContent>
+      </FooterContainer>
+    </div>
   );
 };
 

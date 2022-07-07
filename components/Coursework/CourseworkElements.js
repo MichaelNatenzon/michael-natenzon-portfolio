@@ -10,6 +10,7 @@ export const CourseworkContainers = styled.div`
   margin-left: auto;
   position: relative;
   color: #fff;
+  width: 90%;
 
   @media (min-width: 768px) {
     width: 750px;

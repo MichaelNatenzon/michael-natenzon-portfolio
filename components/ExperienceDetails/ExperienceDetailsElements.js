@@ -4,6 +4,7 @@ export const ExperienceDetailsContainers = styled.div`
   margin-right: auto;
   margin-left: auto;
   position: relative;
+  width: 90%;
 
   @media (min-width: 768px) {
     width: 750px;
