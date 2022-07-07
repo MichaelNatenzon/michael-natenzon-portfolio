@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    unoptimized: true,
+  },
 };
 
 const defaultConfig = (phase, { defaultConfig }) => {
@@ -14,11 +17,3 @@ const defaultConfig = (phase, { defaultConfig }) => {
 };
 
 (module.exports = nextConfig), defaultConfig;
-
-module.exports = {
-  experimental: {
-    images: {
-      unoptimized: true,
-    },
-  },
-};
