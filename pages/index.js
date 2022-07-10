@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 
 import React, { useState } from "react";
 import styles from "../styles/Home.module.css";
+import { Overlay } from "react-bootstrap";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,6 +49,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <Sidebar isOpen={isOpen} countOpen={countOpen} />
+
         <Navbar toggle={toggle} />
         <Slideshow />
         <Experiences />

@@ -13,11 +13,11 @@ export const FooterContainer = styled.div`
 `;
 
 export const FooterContent = styled.div`
-  display: flex;
   align-items: center;
   list-style: none;
   text-align: center;
   font-weight: 200;
   color: #fff;
   background-color: #12162b;
+  cursor: pointer;
 `;

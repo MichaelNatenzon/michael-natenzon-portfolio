@@ -63,7 +63,6 @@ const SidebarContent = ({ variants }) => {
         <SidebarLi
           variants={variants}
           key={index.toString()}
-          eventKey={index.toString()}
           id={index.toString()}
         >
           <SidebarLiIcon src={icon_src} />
