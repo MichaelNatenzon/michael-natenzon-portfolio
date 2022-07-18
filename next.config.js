@@ -5,9 +5,6 @@ const nextConfig = {
     loader: "custom",
     unoptimized: true,
   },
-  env: {
-    UD_CLIENT_ID: "fd23511f-f04f-424a-8fd0-feac9ed4ca8d",
-  },
 };
 
 const defaultConfig = (phase, { defaultConfig }) => {
