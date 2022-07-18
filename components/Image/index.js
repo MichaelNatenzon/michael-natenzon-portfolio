@@ -6,5 +6,5 @@ const customLoader = ({ src }) => {
 };
 
 export default function Image(props) {
-  return <NextImage {...props} loader={customLoader} />;
+  return <NextImage {...props} loader={customLoader} unoptimized={true} />;
 }

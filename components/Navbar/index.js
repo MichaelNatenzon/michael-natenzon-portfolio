@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import FramerMotionItem from "../MotionContent";
-import { animateScroll as scroll } from "react-scroll/modules";
-import { FaBars } from "react-icons/fa";
+
+import { LoginIcon } from "./NavBarIcon";
 
 import {
   NavbarContainer,
@@ -14,7 +13,13 @@ import {
   Spacer,
 } from "./NavbarElements";
 
-const Navbar = ({ toggle }) => {
+const Navbar = ({
+  toggle,
+  toggleLoginMenu,
+  userDetails,
+  setUserDetails,
+  setLoginType,
+}) => {
   const [scrollNav, setScrollNav] = useState(false);
 
   const changeNav = () => {
@@ -76,6 +81,12 @@ const Navbar = ({ toggle }) => {
           </NavItem>
         </NavMenuNonMobile>
       </NavbarContainer>
+      <LoginIcon
+        userDetails={userDetails}
+        setUserDetails={setUserDetails}
+        setLoginType={setLoginType}
+        toggleLoginMenu={toggleLoginMenu}
+      />
     </Nav>
   );
 };

@@ -5,6 +5,7 @@ import { sidebarContents } from "./Data";
 import {
   SidebarLi,
   SidebarLiTitle,
+  SidebarLiTitleContainer,
   SidebarLiIcon,
   SidebarLiText,
 } from "./SidebarElements";
@@ -119,9 +120,9 @@ const Sidebar = ({ isOpen, countOpen }) => {
             }}
             key={countOpen}
           >
-            <SidebarLi variants={variantsItem} id={0}>
+            <SidebarLiTitleContainer variants={variantsItem} id={0}>
               <SidebarLiTitle>Professional Work</SidebarLiTitle>
-            </SidebarLi>
+            </SidebarLiTitleContainer>
             <SidebarContent variants={variantsItem} />
           </motion.ul>
         )}
