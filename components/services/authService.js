@@ -2,7 +2,7 @@ import UAuth from "@uauth/js";
 import React, { useEffect } from "react";
 
 const uauthDetails = {
-  clientID: process.env.UD_CLIENT_ID.toString(),
+  clientID: process.env.UD_CLIENT_ID,
   redirectUri: "http://localhost:3000",
   scope: "openid wallet",
 };
