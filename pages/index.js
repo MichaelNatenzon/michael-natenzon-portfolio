@@ -52,6 +52,7 @@ export default function Home() {
       setCountToggleLogin(countToggleLogin + 1);
       setIsOpen(false);
       setCountOpen(countOpen + 1);
+      console.log(process.env.NEXT_PUBLIC_UD_REDIRECT_URL);
     });
   }, []);
 
