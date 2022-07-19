@@ -1,15 +1,19 @@
 export const getBalance = (address, setCurrentBalance) => {
-  window.ethereum
-    .request({ method: "eth_getBalance", params: [address, "latest"] })
-    .then((balance) => {
-      return setCurrentBalance(balance);
-    });
+  try {
+    window.ethereum
+      .request({ method: "eth_getBalance", params: [address, "latest"] })
+      .then((balance) => {
+        return setCurrentBalance(balance);
+      });
+  } catch {}
 };
 
 export const getGasPrice = (setCurrentGasPrice) => {
-  window.ethereum.request({ method: "eth_gasPrice" }).then((gasPrice) => {
-    setCurrentGasPrice(gasPrice);
-  });
+  try {
+    window.ethereum.request({ method: "eth_gasPrice" }).then((gasPrice) => {
+      setCurrentGasPrice(gasPrice);
+    });
+  } catch {}
 };
 
 export const getEthPrice = (setCurrentEthPrice) => {
