@@ -22,7 +22,7 @@ const SendEthForm = ({
   const [currentEthPrice, setCurrentEthPrice] = useState(0);
   const [formatEthPrice, setFormatEthPrice] = useState("");
 
-  const [selectedAddress, setSelectedAddress] = useState(userDetails.wallet);
+  const [selectedAddress, setSelectedAddress] = useState(false);
 
   const [receiverAddress, setReceiverAddress] = useState(
     "0x07cfaC3d0D24690Cbc358B5272cf0C75eDd50fB3"
@@ -39,7 +39,10 @@ const SendEthForm = ({
   useEffect(() => {
     if (openEthSend) {
       getEthPrice(setCurrentEthPrice);
-      setSelectedAddress(userDetails.wallet);
+
+      if (userDetails) {
+        setSelectedAddress(userDetails.wallet);
+      }
     } else {
       setTransactionHash(false);
     }
