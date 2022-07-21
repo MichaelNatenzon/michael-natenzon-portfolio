@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export const LoginBarContainer = styled(motion.div)`
   background: #12162b;
-  height: 175px;
+  height: 205px;
   display: flex;
   align-items: bottom;
   font-size: 1rem;
@@ -12,7 +12,8 @@ export const LoginBarContainer = styled(motion.div)`
   right: 0;
   top: 45px;
   margin-right: 2px;
-  z-index: 1;
+  padding-top: 12px;
+  z-index: 9;
   color: #fff;
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
@@ -51,4 +52,20 @@ export const LoginLiText = styled.div`
   grid-column-end: 2;
   line-height: 20px;
   padding-left: 5px;
+`;
+
+export const WhyLoginLi = styled(motion.li)`
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  padding-top: 7px;
+  font-weight: 300;
+`;
+
+export const WhyLoginButton = styled(motion.button)`
+  color: #fff;
+  text-align: center;
+  background: transparent;
+  border: transparent;
 `;

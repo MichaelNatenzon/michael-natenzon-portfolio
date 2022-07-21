@@ -1,6 +1,8 @@
 import UAuth from "@uauth/js";
 import React, { useEffect } from "react";
 
+import { toast } from "react-toastify";
+
 const uauthDetails = {
   clientID: process.env.NEXT_PUBLIC_UD_CLIENT_ID,
   redirectUri: process.env.NEXT_PUBLIC_UD_REDIRECT_URL,
@@ -21,7 +23,12 @@ export const UDLogin = async (setUserDetails) => {
     localStorage.setItem("token", JSON.stringify(NewUserDetails));
     setUserDetails(NewUserDetails);
   } catch (error) {
-    console.error(error);
+    toast.error("Cancelled Unstoppable Domains Login", {
+      position: "top-center",
+      autoClose: 2200,
+      closeOnClick: true,
+      hideProgressBar: true,
+    });
   }
 };
 
@@ -68,7 +75,15 @@ export const MetaLoginButton = ({ setUserDetails, buttonContent }) => {
         .request({ method: "eth_requestAccounts" })
         .then((result) => {
           accountChangedHandler(result[0]);
-        });
+        })
+        .catch((error) =>
+          toast.error("Cancelled Metamask Login", {
+            position: "top-center",
+            autoClose: 2200,
+            closeOnClick: true,
+            hideProgressBar: true,
+          })
+        );
     } else {
       window.open("https://metamask.io/", "_blank");
     }
@@ -120,7 +135,12 @@ export const Logout = async (userDetails, setUserDetails) => {
     localStorage.removeItem("token");
     setUserDetails(false);
   } catch {
-    console.log("Error! Couldn't Logout");
+    toast.error("Error: Couldn't Logout", {
+      position: "top-right",
+      autoClose: 2200,
+      closeOnClick: true,
+      hideProgressBar: true,
+    });
   }
 };
 

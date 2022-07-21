@@ -83,7 +83,7 @@ const Sidebar = ({ isOpen, countOpen }) => {
       animate={isOpen ? "open" : "closed"}
       variants={variantsNav}
       style={{
-        zIndex: 15,
+        zIndex: 5,
         backgroundColor: "#12162b",
         left: 0,
         top: 0,

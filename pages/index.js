@@ -7,14 +7,17 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import LoginMenu from "../components/LoginBar";
 import Footer from "../components/Footer";
-
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
-import styles from "../styles/Home.module.css";
-
+import SendEthForm from "../components/services/Metamask/SendService";
 import {
   CurrentLoginType,
   LocalUser,
 } from "../components/services/authService.js";
+
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import styles from "../styles/Home.module.css";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,8 +25,10 @@ export default function Home() {
   const [toggleLogin, setToggleLogin] = useState(false);
   const [countToggleLogin, setCountToggleLogin] = useState(0);
 
-  const [loginType, setLoginType] = useState(CurrentLoginType);
   const [userDetails, setUserDetails] = useState(false);
+
+  const [openEthSend, setOpenEthSend] = useState(false);
+  const [countOpenEthSend, setCountOpenEthSend] = useState(0);
 
   const [countConnectionChecks, setCountConnectionChecks] = useState(0);
 
@@ -46,13 +51,17 @@ export default function Home() {
     setCountToggleLogin(countToggleLogin + 1);
   };
 
+  const toggleEthSendModal = () => {
+    setOpenEthSend(!openEthSend);
+    setCountOpenEthSend(countOpenEthSend + 1);
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setToggleLogin(false);
       setCountToggleLogin(countToggleLogin + 1);
       setIsOpen(false);
       setCountOpen(countOpen + 1);
-      console.log(process.env.NEXT_PUBLIC_UD_REDIRECT_URL);
     });
   }, []);
 
@@ -84,6 +93,19 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <SendEthForm
+          openEthSend={openEthSend}
+          countOpenEthSend={countOpenEthSend}
+          toggleEthSendModal={toggleEthSendModal}
+        />
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          rtl={false}
+        />
+
         <Sidebar isOpen={isOpen} countOpen={countOpen} />
 
         <Navbar
@@ -95,6 +117,7 @@ export default function Home() {
         <LoginMenu
           toggleLoginMenu={toggleLogin}
           countToggleLogin={countToggleLogin}
+          toggleEthSendModal={toggleEthSendModal}
           setUserDetails={setUserDetails}
           userDetails={userDetails}
         />

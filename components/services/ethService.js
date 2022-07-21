@@ -24,3 +24,11 @@ export const getEthPrice = (setCurrentEthPrice) => {
       setCurrentEthPrice(data.ask);
     });
 };
+
+export const getSelectedAddress = (setSelectedAddress) => {
+  try {
+    setSelectedAddress(ethereum.selectedAddress);
+  } catch {}
+};
+
+export const checkAddress = (address) => {};

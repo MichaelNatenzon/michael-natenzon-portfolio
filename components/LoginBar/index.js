@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
 import { getGasPrice, getEthPrice, getBalance } from "../services/ethService";
 
 import { ethers } from "ethers";
@@ -7,6 +8,8 @@ import { ethers } from "ethers";
 import {
   LoginBarContainer,
   LoginLi,
+  WhyLoginLi,
+  WhyLoginButton,
   LoginLiIcon,
   LoginLiText,
 } from "./LoginBarElements";
@@ -16,15 +19,17 @@ import { MetaLoginButton, UDLoginButton } from "../services/authService.js";
 const variantsMenu = {
   hidden: {
     opacity: 1,
-    y: -175,
+    y: -205,
     transition: {
       duration: 0.7,
       delay: 0.2,
+      type: "Tween",
+      stiffness: 100,
     },
   },
   visible: {
     opacity: 1,
-    y: -20,
+    y: -30,
   },
 };
 
@@ -57,6 +62,7 @@ const variantsItem = {
 const LoginMenu = ({
   userDetails,
   toggleLoginMenu,
+  toggleEthSendModal,
   countToggleLogin,
   setUserDetails,
 }) => {
@@ -74,6 +80,12 @@ const LoginMenu = ({
   }, [toggleLoginMenu]);
 
   const LoginMenuContents = () => {
+    const whyLoginMessage = () => {
+      toast("Logging in will get you access to some cool web3 features", {
+        autoClose: 2000,
+      });
+    };
+
     const formatBalance = ethers.utils
       .formatEther(currentBalance)
       .toString()
@@ -95,12 +107,12 @@ const LoginMenu = ({
 
     const formatBalanceUSD = (formatBalance * formatCurrentEthPrice)
       .toFixed(2)
-      .toString();
+      .toLocaleString();
 
     return userDetails ? (
       <div
         style={{
-          paddingTop: "40px",
+          paddingTop: "32px",
           paddingRight: "15px",
           textAlign: "right",
           width: "100%",
@@ -114,6 +126,10 @@ const LoginMenu = ({
         <b>Transaction Cost</b>
         <br />
         {formatCurrentGasPrice} Gwei (${formatGasCost})
+        <br />
+        <div style={{ fontSize: "12px", paddingTop: "16px" }}>
+          <button onClick={toggleEthSendModal}>Send ETH</button>
+        </div>
       </div>
     ) : (
       <AnimatePresence>
@@ -160,6 +176,11 @@ const LoginMenu = ({
                 </LoginLi>
               }
             />
+            <WhyLoginLi variants={variantsItem}>
+              <WhyLoginButton onClick={whyLoginMessage}>
+                Why Login?
+              </WhyLoginButton>
+            </WhyLoginLi>
           </motion.ul>
         )}
       </AnimatePresence>
