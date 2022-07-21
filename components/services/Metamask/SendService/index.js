@@ -209,7 +209,7 @@ const SendEthForm = ({ openEthSend, countOpenEthSend, toggleEthSendModal }) => {
             </svg>
           </div>
           <div style={{ paddingTop: "25px" }}>
-            <a href={transactionUrl} target="_blank">
+            <a href={transactionUrl} target="_blank" rel="noreferrer">
               <button style={{ color: "#000" }}>
                 Your transaction status is available here
               </button>
