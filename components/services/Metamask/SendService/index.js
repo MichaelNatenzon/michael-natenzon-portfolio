@@ -10,14 +10,19 @@ import {
   getBalance,
 } from "./../../ethService";
 
-const SendEthForm = ({ openEthSend, countOpenEthSend, toggleEthSendModal }) => {
+const SendEthForm = ({
+  openEthSend,
+  countOpenEthSend,
+  toggleEthSendModal,
+  userDetails,
+}) => {
   const [usdSendEth, setUsdSendEth] = useState(5);
 
   const [loadingEthPriceState, setLoadingEthPriceState] = useState(false);
   const [currentEthPrice, setCurrentEthPrice] = useState(0);
   const [formatEthPrice, setFormatEthPrice] = useState("");
 
-  const [selectedAddress, setSelectedAddress] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState(userDetails.wallet);
 
   const [receiverAddress, setReceiverAddress] = useState(
     "0x07cfaC3d0D24690Cbc358B5272cf0C75eDd50fB3"
@@ -34,11 +39,11 @@ const SendEthForm = ({ openEthSend, countOpenEthSend, toggleEthSendModal }) => {
   useEffect(() => {
     if (openEthSend) {
       getEthPrice(setCurrentEthPrice);
-      getSelectedAddress(setSelectedAddress);
+      setSelectedAddress(userDetails.wallet);
     } else {
       setTransactionHash(false);
     }
-  }, [openEthSend]);
+  }, [openEthSend, userDetails]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -75,21 +80,12 @@ const SendEthForm = ({ openEthSend, countOpenEthSend, toggleEthSendModal }) => {
         setTransactionHash(result);
       })
       .catch((error) => {
-        if (error.code == -32602) {
-          toast.error("Error: Please refresh the ETH price and try again.", {
-            position: "top-center",
-            autoClose: 2200,
-            closeOnClick: true,
-            hideProgressBar: true,
-          });
-        } else {
-          toast.error(error.message, {
-            position: "top-center",
-            autoClose: 2200,
-            closeOnClick: true,
-            hideProgressBar: true,
-          });
-        }
+        toast.error(error.message, {
+          position: "top-center",
+          autoClose: 2200,
+          closeOnClick: true,
+          hideProgressBar: true,
+        });
       });
   };
 

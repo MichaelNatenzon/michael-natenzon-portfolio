@@ -97,6 +97,7 @@ export default function Home() {
           openEthSend={openEthSend}
           countOpenEthSend={countOpenEthSend}
           toggleEthSendModal={toggleEthSendModal}
+          userDetails={userDetails}
         />
         <ToastContainer
           position="top-center"
