@@ -39,9 +39,9 @@ const NavbarIframePage = ({
       <NavbarContainer>
         <NavMenuNonMobile>
           <NavItem>
-            <NavExternalLinks>
-              <a href="/">Home</a>
-            </NavExternalLinks>
+            <NavLinks href="/">
+              <a>Home</a>
+            </NavLinks>
           </NavItem>
         </NavMenuNonMobile>
         <Spacer />

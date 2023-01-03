@@ -9,7 +9,8 @@ const PlotGenerator = ({ userDetails }) => {
     <div className={styles.iframeplaceholder}>
       <h1>
         Please login using the button in the top right corner
-        <br />to use the plot generator
+        <br />
+        to use the plot generator
       </h1>
     </div>
   );
