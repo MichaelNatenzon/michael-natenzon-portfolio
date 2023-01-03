@@ -1,6 +1,6 @@
 const PlotGenerator = () => {
   return (
-    <div>
+    <div className="iframe">
       <iframe
         src="https://automatedplotgeneration.azurewebsites.net/"
       />

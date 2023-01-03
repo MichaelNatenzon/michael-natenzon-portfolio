@@ -61,9 +61,7 @@ const Navbar = ({
         <Spacer />
         <NavMenu>
           <NavItem>
-            <NavExternalLinks onClick={toggle}>
-              Website Portfolio
-            </NavExternalLinks>
+            <NavExternalLinks onClick={toggle}>Code Projects</NavExternalLinks>
           </NavItem>
         </NavMenu>
         <Spacer />

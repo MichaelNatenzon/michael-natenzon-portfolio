@@ -1,5 +1,10 @@
 export const sidebarContents = [
   {
+    name: "Bulk Plot Generator",
+    link: "/plot-generator",
+    icon_src: "./images/sidemenu_icons/Analytics.png",
+  },
+  {
     name: "The Age of Nano",
     link: "https://www.theageofnano.com/",
     icon_src: "./images/sidemenu_icons/Atom.png",
