@@ -98,3 +98,15 @@
     flex-direction: column;
   }
 }
+
+.fullpageiframe {
+  margin: 0px 0px -8px 0px;
+  padding: 0px;
+}
+
+.fullpageiframe iframe{
+  width: 100% ;
+  height: 93vh;
+  margin: 0px;
+  padding: 0px;
+}
