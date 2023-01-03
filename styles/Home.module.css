@@ -104,9 +104,15 @@
   padding: 0px;
 }
 
-.fullpageiframe iframe{
+.fullpageiframe iframe {
   width: 100% ;
-  height: 93vh;
+  height: 92vh;
   margin: 0px;
   padding: 0px;
+}
+
+.fullpageiframe .iframeplaceholder {
+    height: 63vh; /* or absolute */
+    margin: 30vh 3% 0% 3%;
+    text-align: center;
 }

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import PlotGenerator from "../components/PlotGenerator";
-import Navbar from "../components/Navbar";
+import NavbarIframePage from "../components/NavbarIframes";
 import Sidebar from "../components/Sidebar";
 import LoginMenu from "../components/LoginBar";
 import Footer from "../components/Footer";
@@ -103,7 +103,7 @@ export default function Home() {
 
         <Sidebar isOpen={isOpen} countOpen={countOpen} />
 
-        <Navbar
+        <NavbarIframePage
           toggle={toggle}
           toggleLoginMenu={toggleLoginMenu}
           userDetails={userDetails}
@@ -116,7 +116,7 @@ export default function Home() {
           setUserDetails={setUserDetails}
           userDetails={userDetails}
         />
-        <PlotGenerator/>
+        <PlotGenerator userDetails={userDetails} />
       </main>
       <Footer />
     </div>
