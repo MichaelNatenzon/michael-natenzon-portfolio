@@ -5,6 +5,7 @@ const nextConfig = {
     loader: "custom",
     unoptimized: true,
   },
+  trailingSlash: true,
 };
 
 const defaultConfig = (phase, { defaultConfig }) => {
