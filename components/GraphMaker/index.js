@@ -10,7 +10,7 @@ const PlotGenerator = ({ userDetails }) => {
       <h1>
         Please login using the button in the top right corner
         <br />
-        to use the plot generator
+        to use the graph maker
       </h1>
     </div>
   );

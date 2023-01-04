@@ -4,7 +4,7 @@ import { Logout } from "../services/authService";
 
 export const LoginIcon = ({ toggleLoginMenu, userDetails, setUserDetails }) => {
   return userDetails ? (
-    <div>
+    <div style={{ width: "190px" }}>
       <motion.button
         style={{
           marginRight: "20px",
@@ -40,6 +40,7 @@ export const LoginIcon = ({ toggleLoginMenu, userDetails, setUserDetails }) => {
       <button
         style={{
           marginRight: "20px",
+          marginLeft: "137px",
           cursor: "pointer",
           background: "transparent",
           border: "0",

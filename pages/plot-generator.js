@@ -1,5 +1,5 @@
 import Head from "next/head";
-import PlotGenerator from "../components/PlotGenerator";
+import PlotGenerator from "../components/GraphMaker";
 import NavbarIframePage from "../components/NavbarIframes";
 import Sidebar from "../components/Sidebar";
 import LoginMenu from "../components/LoginBar";

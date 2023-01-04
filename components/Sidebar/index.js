@@ -60,7 +60,7 @@ const variantsItem = {
 const SidebarContent = ({ variants }) => {
   return (
     <div>
-      {sidebarContents.map(({ name, link, icon_src }, index) => (
+      {sidebarContents.map(({ name, link, icon_src, target }, index) => (
         <SidebarLi
           variants={variants}
           key={index.toString()}
@@ -68,7 +68,7 @@ const SidebarContent = ({ variants }) => {
         >
           <SidebarLiIcon src={icon_src} />
 
-          <SidebarLiText href={link} target="_blank" rel="noreferrer">
+          <SidebarLiText href={link} target={target} rel="noreferrer">
             {name}
           </SidebarLiText>
         </SidebarLi>
