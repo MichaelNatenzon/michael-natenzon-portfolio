@@ -9,7 +9,7 @@ const uauthDetails = {
   scope: "openid wallet",
 };
 
-export const uauth = new UAuth(uauthDetails);
+const uauth = new UAuth(uauthDetails);
 
 const UDLogin = async (setUserDetails) => {
   try {
