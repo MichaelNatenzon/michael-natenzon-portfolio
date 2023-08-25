@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { LoginIcon } from "./NavbarIcon";
+import { LoginIcon } from "./NavbarIcon.js";
 
 import {
   NavbarContainer,
