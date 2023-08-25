@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import uauth from "./UnstoppableDomains";
+import uauth from "./unstoppableDomains";
 
 // Check between UD and Metamask
 export const CurrentLoginType = () => {

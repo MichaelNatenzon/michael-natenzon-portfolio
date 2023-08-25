@@ -43,3 +43,5 @@ export const UDLoginButton = ({ setUserDetails, buttonContent }) => {
     </LoginButton>
   );
 };
+
+export default UDLoginButton;
