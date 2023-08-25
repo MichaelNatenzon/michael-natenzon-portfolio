@@ -4,9 +4,8 @@ const API_URL = "https://themichaelnatenzon.com";
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    loader: "custom",
-    unoptimized: true,
-    path: "",
+    loader: "imgix",
+    path: "/",
   },
   trailingSlash: true,
 };
