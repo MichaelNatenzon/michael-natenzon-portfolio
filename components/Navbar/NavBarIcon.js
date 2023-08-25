@@ -9,7 +9,7 @@ import {
   IconButton,
 } from "./NavbarIconElements";
 
-export const LoginIcon = ({ toggleLoginMenu, userDetails, setUserDetails }) => {
+export const NavbarIcon = ({ toggleLoginMenu, userDetails, setUserDetails }) => {
   // If user is logged in display username
   // Otherwise display login icon
   return userDetails ? (
@@ -64,3 +64,5 @@ export const LoginIcon = ({ toggleLoginMenu, userDetails, setUserDetails }) => {
     </IconButtonContainer>
   );
 };
+
+export default NavbarIcon;

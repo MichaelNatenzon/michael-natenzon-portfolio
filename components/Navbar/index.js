@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { LoginIcon } from "./NavbarIcon.js";
+import NavbarIcon from "./NavbarIcon";
 
 import {
   NavbarContainer,
@@ -82,7 +82,7 @@ const Navbar = ({
           </NavItem>
         </NavMenuNonMobile>
       </NavbarContainer>
-      <LoginIcon
+      <NavbarIcon
         userDetails={userDetails}
         setUserDetails={setUserDetails}
         setLoginType={setLoginType}
