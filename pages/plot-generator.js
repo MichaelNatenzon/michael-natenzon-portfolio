@@ -4,7 +4,7 @@ import NavbarIframePage from "../components/NavbarIframes";
 import Sidebar from "../components/Sidebar";
 import LoginMenu from "../components/LoginBar";
 import Footer from "../components/Footer";
-import SendEthForm from "../components/services/metamask";
+import SendEthForm from "../components/services/Metamask";
 import { LocalUser } from "../components/services/authService.js";
 
 import React, { useState, useEffect } from "react";

@@ -5,8 +5,8 @@ import { ethers } from "ethers";
 import Link from "next/link";
 
 import { getGasPrice, getEthPrice, getBalance } from "../services/ethService";
-import { MetaLoginButton } from "../services/metamask";
-import { UDLoginButton } from "../services/unstoppableDomains";
+import { MetaLoginButton } from "../services/Metamask";
+import { UDLoginButton } from "../services/UnstoppableDomains";
 
 import { getBtcMetrics } from "../services/btcService";
 
