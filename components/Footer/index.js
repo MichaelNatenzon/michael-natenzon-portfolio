@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { animateScroll as scroll } from "react-scroll/modules";
 
 import { FooterContainer, FooterContent } from "./FooterElements";

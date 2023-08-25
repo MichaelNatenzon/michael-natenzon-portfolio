@@ -1,9 +1,9 @@
 import styles from "../../styles/Home.module.css";
 
-const PlotGenerator = ({ userDetails }) => {
+const PlotGenerator = ({ userDetails, url }) => {
   return userDetails ? (
     <div className={styles}>
-      <iframe src="https://automatedplotgeneration.azurewebsites.net/" />
+      <iframe src={url} />
     </div>
   ) : (
     <div className={styles.iframeplaceholder}>

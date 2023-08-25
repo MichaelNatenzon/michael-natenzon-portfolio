@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { animateScroll as scroll } from "react-scroll/modules";
+import React, { useState } from "react";
 
 import FramerMotionItem from "../MotionContent";
-import { motion, AnimatePresence } from "framer-motion";
-import { WelcomeAnimations, SlideshowText, SlideshowSkills } from "./Data";
+import { motion } from "framer-motion";
+import { WelcomeAnimations } from "./Animations";
 
 import {
   SlideshowWrapper,
@@ -11,7 +10,6 @@ import {
   SlideshowElement,
   SlideshowBottomText,
   SlideshowBottomLine,
-  SlideshowBottomSkills,
 } from "./SlideshowElements";
 
 const TimeoutAnimation = (setState, delay) => {
@@ -20,7 +18,7 @@ const TimeoutAnimation = (setState, delay) => {
   }, delay);
 };
 
-const Slideshow = () => {
+const Slideshow = ({ slideshowContent }) => {
   const [showHello, setShowHello] = useState(true);
   TimeoutAnimation(setShowHello, 1300);
 
@@ -91,7 +89,7 @@ const Slideshow = () => {
     <div id="slideshow">
       <SlideshowWrapper>
         <SlideshowGrid>
-          {WelcomeAnimations.map(
+          {WelcomeAnimations({ slideshowContent }).map(
             (
               { x, y, o, d, delay, content, style, gridRow, gridCol },
               index
@@ -137,17 +135,21 @@ const Slideshow = () => {
               gridColumnStart: 19,
               gridColumnEnd: 24,
               maxHeight: "800px",
-              backgroundImage: `url("/images/Michael_Natenzon.png")`,
+
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat",
+
+              backgroundImage: `url("/api/images/Michael_Natenzon.png")`,
             }}
           ></motion.div>
         </SlideshowGrid>
       </SlideshowWrapper>
-      <SlideshowBottomText>{SlideshowText}</SlideshowBottomText>
+      <SlideshowBottomText>
+        {slideshowContent["Description"]}
+      </SlideshowBottomText>
       <SlideshowBottomLine />
       <SlideshowBottomText textSize="small">
-        I also build web and decentralized web applications in my spare time
+        {slideshowContent["DescriptionSubText"]}
       </SlideshowBottomText>
     </div>
   );

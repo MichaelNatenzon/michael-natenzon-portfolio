@@ -19,6 +19,31 @@ export const LoginBarContainer = styled(motion.div)`
   border-bottom-right-radius: 7px;
 `;
 
+export const LoginBarWrapper = styled.div`
+  padding-top: 18px;
+  padding-right: 15px;
+  text-align: right;
+  width: 100%;
+  font-family: arial;
+`;
+
+export const BalanceWrapper = styled.div`
+  font-size: 16px;
+  padding-bottom: 14px;
+`;
+
+export const BtcEthLinksWrapper = styled.div`
+  font-size: 12px;
+  padding-top: 16px;
+`;
+
+export const LoginLinks = styled(motion.ul)`
+  list-style-type: none;
+  line-height: 45px;
+  padding-left: 0px;
+  padding-top: 7px;
+`;
+
 export const LoginLi = styled(motion.li)`
   color: #fff;
   display: grid;

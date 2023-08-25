@@ -1,7 +1,3 @@
-import Image from "next/image";
-
-import mn_image from "../../public/images/Michael_Natenzon.png";
-
 import {
   SlideshowHello,
   SlideshowMyNameIs,
@@ -14,11 +10,7 @@ import {
   SlideshowFinalBulletsMiddle,
 } from "./SlideshowElements";
 
-export const SlideshowText = `I transform data into analytical dashboards that help decision makers more easily navigate ambiguous questions and problems.`;
-
-export const SlideshowSkills = `Python - SQL - DataBricks - Azure - PowerBI - Looker`;
-
-export const WelcomeAnimations = [
+export const WelcomeAnimations = ({ slideshowContent }) => [
   {
     x: [6, 0, -6],
     y: [0, 0, 0],
@@ -27,7 +19,7 @@ export const WelcomeAnimations = [
     delay: 0.1,
     content: (
       <SlideshowHello>
-        <i>Hello,</i>
+        <i>{slideshowContent.Greeting}</i>
       </SlideshowHello>
     ),
     gridRow: [4, 4],
@@ -93,7 +85,9 @@ export const WelcomeAnimations = [
     o: [0, 1, 0],
     d: [0.8, 0.8],
     delay: 4.1,
-    content: <SlideshowAndI>And I</SlideshowAndI>,
+    content: (
+      <SlideshowAndI>{slideshowContent.FirstTransitionText}</SlideshowAndI>
+    ),
     gridRow: [6, 8],
     gridCol: [4, 8],
   },
@@ -103,7 +97,11 @@ export const WelcomeAnimations = [
     o: [0, 1, 0],
     d: [0.8, 0.8],
     delay: 5.2,
-    content: <SlideshowActivities>Work in</SlideshowActivities>,
+    content: (
+      <SlideshowActivities>
+        {slideshowContent.IntroContents[0][0]}
+      </SlideshowActivities>
+    ),
     gridRow: [11, 12],
     gridCol: [4, 9],
   },
@@ -113,7 +111,11 @@ export const WelcomeAnimations = [
     o: [0, 1, 0],
     d: [0.8, 0.8],
     delay: 5.5,
-    content: <SlideshowActivities>Data Science</SlideshowActivities>,
+    content: (
+      <SlideshowActivities>
+        {slideshowContent.IntroContents[0][1]}
+      </SlideshowActivities>
+    ),
     gridRow: [12, 14],
     gridCol: [4, 14],
   },
@@ -123,7 +125,11 @@ export const WelcomeAnimations = [
     o: [0, 1, 0],
     d: [0.8, 0.8],
     delay: 8,
-    content: <SlideshowActivities>Academically Researched</SlideshowActivities>,
+    content: (
+      <SlideshowActivities>
+        {slideshowContent.IntroContents[1][0]}
+      </SlideshowActivities>
+    ),
     gridRow: [11, 12],
     gridCol: [4, 14],
   },
@@ -133,7 +139,11 @@ export const WelcomeAnimations = [
     o: [0, 1, 0],
     d: [0.8, 0.8],
     delay: 8.3,
-    content: <SlideshowActivities>NanoTechnology</SlideshowActivities>,
+    content: (
+      <SlideshowActivities>
+        {slideshowContent.IntroContents[1][1]}
+      </SlideshowActivities>
+    ),
     gridRow: [12, 14],
     gridCol: [4, 14],
   },
@@ -143,7 +153,11 @@ export const WelcomeAnimations = [
     o: [0, 1, 0],
     d: [0.8, 0.6],
     delay: 10.8,
-    content: <SlideshowActivities>Studied</SlideshowActivities>,
+    content: (
+      <SlideshowActivities>
+        {slideshowContent.IntroContents[2][0]}
+      </SlideshowActivities>
+    ),
     gridRow: [11, 12],
     gridCol: [4, 14],
   },
@@ -154,7 +168,9 @@ export const WelcomeAnimations = [
     d: [0.8, 0.6],
     delay: 11.1,
     content: (
-      <SlideshowActivities>Enterprise Risk Management</SlideshowActivities>
+      <SlideshowActivities>
+        {slideshowContent.IntroContents[2][1]}
+      </SlideshowActivities>
     ),
     gridRow: [12, 14],
     gridCol: [4, 18],
@@ -166,7 +182,7 @@ export const WelcomeAnimations = [
     o: [0, 1, 0],
     d: [0.8, 0.8],
     delay: 13.2,
-    content: <SlideshowMyNameIs>And I Also</SlideshowMyNameIs>,
+    content: <SlideshowMyNameIs>{slideshowContent.And}</SlideshowMyNameIs>,
     gridRow: [7, 7],
     gridCol: [4, 8],
   },
@@ -177,7 +193,9 @@ export const WelcomeAnimations = [
     d: [0.8, 0.6],
     delay: 14.1,
     content: (
-      <SlideshowMadeThisWebsite>Coded This Website</SlideshowMadeThisWebsite>
+      <SlideshowMadeThisWebsite>
+        {slideshowContent.FinalDisappearingMessage}
+      </SlideshowMadeThisWebsite>
     ),
     gridRow: [8, 8],
     gridCol: [4, 13],
@@ -191,7 +209,7 @@ export const WelcomeAnimations = [
     delay: 16,
     content: (
       <SlideshowCollegeGrad>
-        Graduate of The Johns Hopkins University
+        {slideshowContent.NameSubTitle}
       </SlideshowCollegeGrad>
     ),
     gridRow: [6, 6],
@@ -204,7 +222,9 @@ export const WelcomeAnimations = [
     d: [0.8, 0.8],
     delay: 16,
     content: (
-      <SlideshowFinalBullets>Senior Data Scientist</SlideshowFinalBullets>
+      <SlideshowFinalBullets>
+        {slideshowContent.FinalContents[0]}
+      </SlideshowFinalBullets>
     ),
     gridRow: [12, 12],
     gridCol: [4, 14],
@@ -217,7 +237,7 @@ export const WelcomeAnimations = [
     delay: 16,
     content: (
       <SlideshowFinalBulletsMiddle>
-        BS, Materials Engineering
+        {slideshowContent.FinalContents[1]}
       </SlideshowFinalBulletsMiddle>
     ),
     style: {},
@@ -233,7 +253,7 @@ export const WelcomeAnimations = [
     delay: 16,
     content: (
       <SlideshowFinalBullets>
-        MBA, Enterprise Risk Management
+        {slideshowContent.FinalContents[2]}
       </SlideshowFinalBullets>
     ),
     gridRow: [15, 15],

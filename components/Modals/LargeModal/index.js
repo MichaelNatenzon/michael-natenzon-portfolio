@@ -1,5 +1,14 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
+
+import {
+  ModalContainer,
+  ModalWrapper,
+  ModalContentContainer,
+  ModalContent,
+  ModalCloseButtonContainer,
+  ModalCloseButton,
+} from "./LargeModalElements";
 
 export const LargeModal = ({
   showState,
@@ -19,22 +28,10 @@ export const LargeModal = ({
     }
   }, [showState]);
   return (
-    <motion.div style={{ width: "100%" }}>
+    <ModalContainer>
       <AnimatePresence>
         {showState && (
-          <motion.div
-            style={{
-              zIndex: "99",
-              position: "absolute",
-              backgroundColor: "rgb(0 0 0 / 32%)",
-              justifyContent: "center",
-              alignItems: "start",
-              width: "100%",
-              height: "100%",
-              left: "0",
-              top: "0",
-              display: "flex",
-            }}
+          <ModalWrapper
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{
@@ -42,15 +39,9 @@ export const LargeModal = ({
               transition: { duration: 0.3, when: "afterChildren" },
             }}
           >
-            <motion.div
-              style={{
-                width: modalWidth,
-                borderRadius: 15,
-                backgroundColor: "#fff",
-                marginTop: "12vh",
-                height: modalHeight,
-                paddingBottom: "30px",
-              }}
+            <ModalContentContainer
+              modalwidth={modalWidth}
+              modalheight={modalHeight}
               initial={{ opacity: 1, scale: 0 }}
               animate={{
                 opacity: 1,
@@ -68,8 +59,8 @@ export const LargeModal = ({
               }}
               key={showStateChangeCount}
             >
-              <div style={{ display: "flex", justifyContent: "right" }}>
-                <button onClick={closeToggle} style={{ color: "#000" }}>
+              <ModalCloseButtonContainer>
+                <ModalCloseButton onClick={closeToggle}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="36"
@@ -79,22 +70,13 @@ export const LargeModal = ({
                   >
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                   </svg>
-                </button>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "left",
-                  paddingLeft: "20px",
-                  paddingRight: "20px",
-                }}
-              >
-                {modalContent}
-              </div>
-            </motion.div>
-          </motion.div>
+                </ModalCloseButton>
+              </ModalCloseButtonContainer>
+              <ModalContent>{modalContent}</ModalContent>
+            </ModalContentContainer>
+          </ModalWrapper>
         )}
       </AnimatePresence>
-    </motion.div>
+    </ModalContainer>
   );
 };

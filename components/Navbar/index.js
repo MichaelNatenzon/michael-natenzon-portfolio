@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { LoginIcon } from "./NavBarIcon";
+import { LoginIcon } from "./NavbarIcon";
 
 import {
   NavbarContainer,
@@ -19,6 +19,7 @@ const Navbar = ({
   userDetails,
   setUserDetails,
   setLoginType,
+  navbarContent,
 }) => {
   const [scrollNav, setScrollNav] = useState(false);
 
@@ -54,14 +55,16 @@ const Navbar = ({
         <NavMenu>
           <NavItem>
             <NavLinks to="experience" duration={500} spy={true} exact="true">
-              My Experience
+              {navbarContent["FirstSectionAnchor"]}
             </NavLinks>
           </NavItem>
         </NavMenu>
         <Spacer />
         <NavMenu>
           <NavItem>
-            <NavExternalLinks onClick={toggle}>Code Projects</NavExternalLinks>
+            <NavExternalLinks onClick={toggle}>
+              {navbarContent["SideMenuToggle"]}
+            </NavExternalLinks>
           </NavItem>
         </NavMenu>
         <Spacer />
@@ -69,11 +72,11 @@ const Navbar = ({
           <NavItem>
             <NavExternalLinks>
               <a
-                href="https://www.theageofnano.com/"
+                href={navbarContent["ExternalLink"]["Url"]}
                 target="_blank"
                 rel="noreferrer"
               >
-                The Age of Nano
+                {navbarContent["ExternalLink"]["Text"]}
               </a>
             </NavExternalLinks>
           </NavItem>

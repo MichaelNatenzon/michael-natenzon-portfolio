@@ -7,19 +7,35 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import LoginMenu from "../components/LoginBar";
 import Footer from "../components/Footer";
-import SendEthForm from "../components/services/Metamask/SendService";
-import {
-  CurrentLoginType,
-  LocalUser,
-} from "../components/services/authService.js";
+import SendEthForm from "../components/services/Metamask";
+import { LocalUser } from "../components/services/authService.js";
 
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SendBTCQR from "../components/services/btcService";
 
-export default function Home() {
+const API_URL = "https://themichaelnatenzon.com"; //process.env;
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const response = await fetch(`${API_URL}/home-content`, {
+    method: "GET",
+  });
+  const resJson = await response.json();
+  const pageContent = resJson["message"];
+
+  // Pass data to the page via props
+  return {
+    props: {
+      pageContent,
+    },
+  };
+}
+
+export default function Home({ pageContent }) {
   const [isOpen, setIsOpen] = useState(false);
   const [countOpen, setCountOpen] = useState(0);
   const [toggleLogin, setToggleLogin] = useState(false);
@@ -29,6 +45,9 @@ export default function Home() {
 
   const [openEthSend, setOpenEthSend] = useState(false);
   const [countOpenEthSend, setCountOpenEthSend] = useState(0);
+
+  const [openBtcSend, setOpenBtcSend] = useState(false);
+  const [countOpenBtcSend, setCountOpenBtcSend] = useState(0);
 
   const [countConnectionChecks, setCountConnectionChecks] = useState(0);
 
@@ -56,6 +75,11 @@ export default function Home() {
     setCountOpenEthSend(countOpenEthSend + 1);
   };
 
+  const toggleBtcSendModal = () => {
+    setOpenBtcSend(!openBtcSend);
+    setCountOpenBtcSend(countOpenBtcSend + 1);
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setToggleLogin(false);
@@ -68,26 +92,32 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Michael Natenzon | Introduction</title>
+        <title>{pageContent["Metadata"]["Home"]["Title"]}</title>
         <meta
           name="keywords"
-          content="Data, Scientist, Engineer, Michael, Natenzon, New, York, Manhattan, Science, Senior, New York, Data Scientist"
+          content={pageContent["Metadata"]["Home"]["Keywords"]}
         />
         <meta
           name="description"
-          content="Michael Natenzon is a Johns Hopkins University educated engineer and MBA working as a Data Scientist in New York City."
+          content={pageContent["Metadata"]["Home"]["Description"]}
         />
-        <meta name="author" content="Michael Natenzon" />
+        <meta
+          name="author"
+          content={pageContent["Metadata"]["Home"]["Author"]}
+        />
 
         <meta
           property="og:title"
-          content="Michael Natenzon | Senior Data Scientist"
+          content={pageContent["Metadata"]["Home"]["OgTitle"]}
         />
         <meta
           property="og:description"
-          content="Transforming data into dashboards that help decision makers navigate ambiguous business problems."
+          content={pageContent["Metadata"]["Home"]["OgDescription"]}
         />
-        <meta property="og:image" content="/images/MichaelNatenzon.jpg" />
+        <meta
+          property="og:image"
+          content={"/images/" + pageContent["Metadata"]["Home"]["OgImage"]}
+        />
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -97,8 +127,17 @@ export default function Home() {
           openEthSend={openEthSend}
           countOpenEthSend={countOpenEthSend}
           toggleEthSendModal={toggleEthSendModal}
+          ethReceiverAddress={pageContent["Wallets"]["ETH"]}
           userDetails={userDetails}
         />
+        <SendBTCQR
+          openBtcSend={openBtcSend}
+          countOpenBtcSend={countOpenBtcSend}
+          toggleBtcSendModal={toggleBtcSendModal}
+          receiverAddress={pageContent["Wallets"]["BTC"]}
+          qrGeneratorLinks={pageContent["Utilities"]}
+        />
+
         <ToastContainer
           position="top-center"
           autoClose={5000}
@@ -107,26 +146,33 @@ export default function Home() {
           rtl={false}
         />
 
-        <Sidebar isOpen={isOpen} countOpen={countOpen} />
+        <Sidebar
+          isOpen={isOpen}
+          countOpen={countOpen}
+          sidebarContent={pageContent["Sidebar"]}
+        />
 
         <Navbar
           toggle={toggle}
           toggleLoginMenu={toggleLoginMenu}
           userDetails={userDetails}
           setUserDetails={setUserDetails}
+          navbarContent={pageContent["Navbar"]}
         />
         <LoginMenu
           toggleLoginMenu={toggleLogin}
           countToggleLogin={countToggleLogin}
           toggleEthSendModal={toggleEthSendModal}
+          toggleBtcSendModal={toggleBtcSendModal}
           setUserDetails={setUserDetails}
           userDetails={userDetails}
+          utilityUrls={pageContent["Utilities"]}
         />
-        <Slideshow />
+        <Slideshow slideshowContent={pageContent["Slideshow"]} />
 
-        <Experiences />
-        <ExperienceDetails />
-        <Coursework />
+        <Experiences experiencesContent={pageContent["FirstSection"]} />
+        <ExperienceDetails experienceDetails={pageContent["SecondSection"]} />
+        <Coursework courseworkDetails={pageContent["ThirdSection"]} />
       </main>
       <Footer />
     </div>

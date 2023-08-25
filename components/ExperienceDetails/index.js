@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { animateScroll as scroll } from "react-scroll/modules";
+import React from "react";
 import CustomAccordion from "../CustomAccordion";
 
 import {
@@ -9,35 +8,35 @@ import {
   ExperienceDetailsBottom,
 } from "./ExperienceDetailsElements";
 
-import {
-  accordionAContents,
-  accordionATitle,
-  accordionBContents,
-  accordionBTitle,
-} from "./Data";
-
-const ExperienceDetails = () => {
+// Create a 2-column section with experiences
+const ExperienceDetails = ({ experienceDetails }) => {
   return (
     <ExperienceDetailsContainers>
       <ExperienceDetailsWrapper>
         <ExperienceDetailsAccordion>
           <CustomAccordion
-            accordionTitle={accordionATitle}
-            accordionContents={accordionAContents}
+            accordionTitle={experienceDetails["FirstAccordion"]["Title"]}
+            accordionContents={experienceDetails["FirstAccordion"]["Contents"]}
             accordionTheme="light"
           />
         </ExperienceDetailsAccordion>
         <ExperienceDetailsAccordion>
           <CustomAccordion
-            accordionTitle={accordionBTitle}
-            accordionContents={accordionBContents}
+            accordionTitle={experienceDetails["SecondAccordion"]["Title"]}
+            accordionContents={experienceDetails["SecondAccordion"]["Contents"]}
             accordionTheme="light"
           />
         </ExperienceDetailsAccordion>
       </ExperienceDetailsWrapper>
       <ExperienceDetailsBottom accordionTheme="light">
-        <a href="/documents/MichaelNatenzon_Resume.pdf" target="_blank">
-          <span style={{ color: "#000" }}>Click Here for a Resume</span>
+        <a
+          href={"/api/documents/" + experienceDetails["LinkedFilePath"]}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span style={{ color: "#000" }}>
+            {experienceDetails["LinkedText"]}
+          </span>
         </a>
       </ExperienceDetailsBottom>
     </ExperienceDetailsContainers>

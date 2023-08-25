@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import mn_image from "../../public/images/Michael_Natenzon.png";
-
 export const SlideshowWrapper = styled.div`
   width: 100%;
   height: 60vw;

@@ -5,18 +5,31 @@ import Sidebar from "../components/Sidebar";
 import LoginMenu from "../components/LoginBar";
 import Footer from "../components/Footer";
 import SendEthForm from "../components/services/Metamask/SendService";
-import {
-  CurrentLoginType,
-  LocalUser,
-} from "../components/services/authService.js";
+import { LocalUser } from "../components/services/authService.js";
 
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Home() {
+const API_URL = "https://themichaelnatenzon.com";
+
+export async function getServerSideProps() {
+  const response = await fetch(`${API_URL}/home-content`, {
+    method: "GET",
+  });
+  const resJson = await response.json();
+  const pageContent = resJson["message"];
+
+  return {
+    props: {
+      pageContent,
+    },
+  };
+}
+
+export default function Home({ pageContent }) {
   const [isOpen, setIsOpen] = useState(false);
   const [countOpen, setCountOpen] = useState(0);
   const [toggleLogin, setToggleLogin] = useState(false);
@@ -65,23 +78,34 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Michael Natenzon | Plot Generator</title>
+        <title>{pageContent["Metadata"]["PlotGenerator"]["Title"]}</title>
         <meta
           name="keywords"
-          content="Data, Scientist, Engineer, Michael, Natenzon, New, York, Plot, Generate"
+          content={pageContent["Metadata"]["PlotGenerator"]["Keywords"]}
         />
         <meta
           name="description"
-          content="A project that makes it easy to generate elegant plots in bulk."
+          content={pageContent["Metadata"]["PlotGenerator"]["Description"]}
         />
-        <meta name="author" content="Michael Natenzon" />
+        <meta
+          name="author"
+          content={pageContent["Metadata"]["PlotGenerator"]["Author"]}
+        />
 
-        <meta property="og:title" content="Michael Natenzon | Plot Generator" />
+        <meta
+          property="og:title"
+          content={pageContent["Metadata"]["PlotGenerator"]["OgTitle"]}
+        />
         <meta
           property="og:description"
-          content="A project that makes it easy to generate elegant plots in bulk."
+          content={pageContent["Metadata"]["PlotGenerator"]["OgDescription"]}
         />
-        <meta property="og:image" content="/images/MichaelNatenzon.jpg" />
+        <meta
+          property="og:image"
+          content={
+            "/images/" + pageContent["Metadata"]["PlotGenerator"]["OgImage"]
+          }
+        />
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -101,13 +125,18 @@ export default function Home() {
           rtl={false}
         />
 
-        <Sidebar isOpen={isOpen} countOpen={countOpen} />
+        <Sidebar
+          isOpen={isOpen}
+          countOpen={countOpen}
+          sidebarContent={pageContent["Sidebar"]}
+        />
 
         <NavbarIframePage
           toggle={toggle}
           toggleLoginMenu={toggleLoginMenu}
           userDetails={userDetails}
           setUserDetails={setUserDetails}
+          navbarContent={pageContent["Navbar"]}
         />
         <LoginMenu
           toggleLoginMenu={toggleLogin}
@@ -116,7 +145,10 @@ export default function Home() {
           setUserDetails={setUserDetails}
           userDetails={userDetails}
         />
-        <PlotGenerator userDetails={userDetails} />
+        <PlotGenerator
+          userDetails={userDetails}
+          url={pageContent["PlotGenerator"]["Url"]}
+        />
       </main>
       <Footer />
     </div>

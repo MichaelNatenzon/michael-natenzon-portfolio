@@ -1,20 +1,40 @@
-import FramerMotionItem from "../../../MotionContent";
-import { motion, AnimatePresence, transform } from "framer-motion";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-import { LargeModal } from "../../../Modals/LargeModal";
+import RefreshIcon from "@mui/icons-material/Refresh";
+
+import { LargeModal } from "../../Modals/LargeModal";
+import { getEthPrice } from "../ethService";
+
 import {
-  getEthPrice,
-  getSelectedAddress,
-  getBalance,
-} from "./../../ethService";
+  ArialContainer,
+  EthReceiverContainer,
+  EthReceiverContent,
+  EthReceiverText,
+  EthReceiverAddressInput,
+  TransactionSentContainer,
+  MetaMaskLoginButtonContainer,
+  SendQtyAndButtonContainer,
+  SendUsdCurrencySymbolContainer,
+  SendUsdCurrencySymbol,
+  SendUsdInputContainer,
+  SendUsdInput,
+  EthUsdConversionContainer,
+  EthUsdConversionTextContainer,
+  EthUsdConversionText,
+  ReloadEthButton,
+  SendEthButtonContainer,
+  SendEthButton,
+  CompletedTransactionContainer,
+  CompletedTransactionButton,
+} from "./SendServiceElements";
 
 const SendEthForm = ({
   openEthSend,
   countOpenEthSend,
   toggleEthSendModal,
   userDetails,
+  ethReceiverAddress,
 }) => {
   const [usdSendEth, setUsdSendEth] = useState(5);
 
@@ -24,9 +44,7 @@ const SendEthForm = ({
 
   const [selectedAddress, setSelectedAddress] = useState(false);
 
-  const [receiverAddress, setReceiverAddress] = useState(
-    "0x07cfaC3d0D24690Cbc358B5272cf0C75eDd50fB3"
-  );
+  const [receiverAddress, setReceiverAddress] = useState(ethReceiverAddress);
 
   const [transactionHash, setTransactionHash] = useState(false);
   const [transactionUrl, setTransactionUrl] = useState(false);
@@ -35,6 +53,10 @@ const SendEthForm = ({
     setLoadingEthPriceState(true);
     getEthPrice(setCurrentEthPrice);
   };
+
+  useEffect(() => {
+    setReceiverAddress(ethReceiverAddress);
+  }, [ethReceiverAddress]);
 
   useEffect(() => {
     if (openEthSend) {
@@ -92,102 +114,57 @@ const SendEthForm = ({
       });
   };
 
-  const variantsLoader = {
-    loading: { rotate: 360, transition: { duration: 2, repeat: Infinity } },
-    notLoading: { transition: { repeat: false } },
-  };
-
   const ModalContent = ({ transactionHash }) => {
     const SendTransaction = () => {
       return (
-        <div>
-          <div className="input-group">
-            <div className="input-group-prepend">
-              <span className="input-group-text">
+        <ArialContainer>
+          <EthReceiverContainer>
+            <EthReceiverContent>
+              <EthReceiverText>
                 ETH Receiver
                 <br /> Address
-              </span>
-            </div>
-            <textarea
-              className="form-control"
+              </EthReceiverText>
+            </EthReceiverContent>
+            <EthReceiverAddressInput
               value={receiverAddress}
               onChange={(e) => setReceiverAddress(e.target.value)}
             />
-          </div>
+          </EthReceiverContainer>
           <br />
-          <div
-            className="input-group mb-3"
-            style={{
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <div className="input-group-prepend">
-              <span className="input-group-text">$</span>
-            </div>
-            <div style={{ width: "70px" }}>
-              <input
-                type="text"
-                className="form-control"
+          <SendQtyAndButtonContainer>
+            <SendUsdCurrencySymbolContainer>
+              <SendUsdCurrencySymbol>$</SendUsdCurrencySymbol>
+            </SendUsdCurrencySymbolContainer>
+            <SendUsdInputContainer>
+              <SendUsdInput
                 value={usdSendEth}
                 onChange={(e) => setUsdSendEth(e.target.value)}
               />
-            </div>
+            </SendUsdInputContainer>
             <br />
-            <div className="input-group-append">
-              <span
-                className="input-group-text"
-                style={{
-                  fontFamily: "helvetica",
-                  fontSize: "14px",
-                }}
-              >
-                {formatEthPrice} USD / ETH {}
-                <motion.div
-                  animate={loadingEthPriceState ? "loading" : "notLoading"}
-                  variants={variantsLoader}
-                >
-                  <button
-                    style={{ color: "#000" }}
-                    onClick={toggleLoadEthPrice}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
-                      <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
-                    </svg>
-                  </button>
-                </motion.div>
-              </span>
-            </div>
+            <EthUsdConversionContainer>
+              <EthUsdConversionTextContainer>
+                <EthUsdConversionText>
+                  {formatEthPrice} USD / ETH
+                </EthUsdConversionText>
+                <ReloadEthButton
+                  loading={loadingEthPriceState}
+                  onClick={toggleLoadEthPrice}
+                  startIcon={<RefreshIcon />}
+                  color="primary"
+                />
+              </EthUsdConversionTextContainer>
+            </EthUsdConversionContainer>
             <br />
             <br />
             <br />
-            <div
-              style={{
-                width: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-                display: "flex",
-              }}
-            >
-              <button
-                className="btn btn-primary"
-                onClick={sendTransaction}
-                style={{ fontFamily: "helvetica" }}
-              >
+            <SendEthButtonContainer>
+              <SendEthButton onClick={sendTransaction}>
                 Send ${usdSendEth} worth of Ethereum
-              </button>
-            </div>
-          </div>
-        </div>
+              </SendEthButton>
+            </SendEthButtonContainer>
+          </SendQtyAndButtonContainer>
+        </ArialContainer>
       );
     };
 
@@ -207,37 +184,25 @@ const SendEthForm = ({
               <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
             </svg>
           </div>
-          <div style={{ paddingTop: "25px" }}>
+          <CompletedTransactionContainer>
             <a href={transactionUrl} target="_blank" rel="noreferrer">
-              <button style={{ color: "#000" }}>
+              <CompletedTransactionButton>
                 Your transaction status is available here
-              </button>
+              </CompletedTransactionButton>
             </a>
-          </div>
+          </CompletedTransactionContainer>
         </div>
       );
     };
 
     return transactionHash ? (
-      <div
-        style={{
-          width: "100%",
-          overflowWrap: "break-word",
-          textAlign: "center",
-        }}
-      >
+      <TransactionSentContainer>
         <TransactionSent />
-      </div>
+      </TransactionSentContainer>
     ) : (
-      <div
-        style={{
-          width: "100%",
-          overflowWrap: "break-word",
-          textAlign: "center",
-        }}
-      >
+      <TransactionSentContainer>
         <SendTransaction />
-      </div>
+      </TransactionSentContainer>
     );
   };
 
@@ -250,6 +215,65 @@ const SendEthForm = ({
       modalContent={<ModalContent transactionHash={transactionHash} />}
       closeToggle={toggleEthSendModal}
     />
+  );
+};
+
+// Login Metamask Login Button
+export const MetaLoginButton = ({ setUserDetails, buttonContent }) => {
+  useEffect(() => {
+    if (window.ethereum) {
+      ethereum.on("accountsChanged", accountChangedHandler);
+    }
+  });
+  const connetWalletHandler = () => {
+    if (window.ethereum) {
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((result) => {
+          accountChangedHandler(result[0]);
+        })
+        .catch((error) =>
+          toast.error("Cancelled Metamask Login", {
+            position: "top-center",
+            autoClose: 2200,
+            closeOnClick: true,
+            hideProgressBar: true,
+          })
+        );
+    } else {
+      window.open("https://metamask.io/", "_blank");
+    }
+  };
+
+  const accountChangedHandler = (wallet_address) => {
+    if (typeof wallet_address == "object" && wallet_address.length == 0) {
+      setUserDetails(false);
+
+      try {
+        localStorage.removeItem("token");
+      } catch {}
+    } else if (wallet_address) {
+      const NewUserDetails = {
+        user: ethereum.selectedAddress,
+        wallet: ethereum.selectedAddress,
+        loginMethod: "MM",
+      };
+
+      localStorage.setItem("token", JSON.stringify(NewUserDetails));
+      setUserDetails(NewUserDetails);
+    } else {
+      setUserDetails(false);
+
+      try {
+        localStorage.removeItem("token");
+      } catch {}
+    }
+  };
+
+  return (
+    <MetaMaskLoginButtonContainer onClick={connetWalletHandler}>
+      {buttonContent}
+    </MetaMaskLoginButtonContainer>
   );
 };
 

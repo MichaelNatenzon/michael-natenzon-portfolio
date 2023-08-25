@@ -2,16 +2,19 @@ import { motion } from "framer-motion";
 
 import { Logout } from "../services/authService";
 
+import {
+  UsernameContainer,
+  UsernameButton,
+  IconButtonContainer,
+  IconButton,
+} from "./NavbarIconElements";
+
 export const LoginIcon = ({ toggleLoginMenu, userDetails, setUserDetails }) => {
+  // If user is logged in display username
+  // Otherwise display login icon
   return userDetails ? (
-    <div style={{ width: "190px" }}>
-      <motion.button
-        style={{
-          marginRight: "20px",
-          cursor: "pointer",
-          background: "transparent",
-          border: "0",
-        }}
+    <UsernameContainer>
+      <UsernameButton
         initial={{ color: "#fff" }}
         animate={{ color: ["#fff", "#71a0d1"] }}
         transition={{
@@ -24,30 +27,24 @@ export const LoginIcon = ({ toggleLoginMenu, userDetails, setUserDetails }) => {
         }}
         onMouseOver={toggleLoginMenu}
       >
+        {/* Long usernames need to be shortened */}
         {userDetails.user.toString().length > 10
           ? userDetails.loginMethod == "UD"
-            ? userDetails.user
-            : [
-                userDetails.user.toString().slice(0, 8),
+            ? // Unstoppable Domains - Show Username
+              userDetails.user
+            : // Metamask Wallet Address- Shorten
+              [
+                userDetails.user.toString().slice(0, 5),
                 "...",
-                userDetails.user.toString().slice(-9),
+                userDetails.user.toString().slice(-5),
               ].join("")
-          : userDetails.user}
-      </motion.button>
-    </div>
+          : // Short names can be displayed
+            userDetails.user}
+      </UsernameButton>
+    </UsernameContainer>
   ) : (
-    <div>
-      <button
-        style={{
-          marginRight: "20px",
-          marginLeft: "137px",
-          cursor: "pointer",
-          background: "transparent",
-          border: "0",
-          color: "#fff",
-        }}
-        onClick={toggleLoginMenu}
-      >
+    <IconButtonContainer>
+      <IconButton onClick={toggleLoginMenu}>
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"
@@ -63,7 +60,7 @@ export const LoginIcon = ({ toggleLoginMenu, userDetails, setUserDetails }) => {
         >
           <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
         </motion.svg>
-      </button>
-    </div>
+      </IconButton>
+    </IconButtonContainer>
   );
 };

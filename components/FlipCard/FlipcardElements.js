@@ -6,6 +6,8 @@ export const FlipCard = styled.div`
   height: 400px;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
 
+  transform: rotateY(0deg);
+
   @media (max-width: 1200px) {
     width: 300px;
   }
@@ -27,9 +29,8 @@ export const FlipCardInner = styled.div`
   transition: transform 0.8s;
   transform-style: preserve-3d;
 
-  &:hover {
-    transform: rotateY(180deg);
-  }
+  ${({ showBack }) =>
+    showBack ? `transform: rotateY(180deg);` : `transform: rotateY(0deg);`}
 `;
 
 export const FlipCardFront = styled.div`
@@ -95,8 +96,7 @@ export const FlipCardBackImage = styled.div`
   grid-row: 1;
 
   &:after {
-    position: absolute;
-    height: 100%;
+    position: relative;
     width: 100%;
     background-color: rgba(0,0,0,.64);
     display: block;
@@ -108,6 +108,7 @@ export const FlipCardBackImage = styled.div`
 export const FlipCardBackContent = styled.div`
   color: #fff;
   position: absolute;
+  background-color: #00000061;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */

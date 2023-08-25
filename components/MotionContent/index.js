@@ -1,6 +1,8 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Modularize Animations to Simplify Configuration
+
 const formatVariants = (x, y, o, d, delay) => {
   return {
     hidden: {

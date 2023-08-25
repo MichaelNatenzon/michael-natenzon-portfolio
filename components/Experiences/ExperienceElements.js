@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import Image from "../Image";
+
 export const ExperienceBackdrop = styled.div`
   width: 100%;
   margin: 0px;
@@ -27,7 +29,7 @@ export const ExperienceContainer = styled.div`
 
 export const ExperienceTextWrapper = styled.div`
   text-align: center;
-  padding: 65px 15px 20px 15px;
+  padding: 65px 15px 10px 15px;
 
   @media screen and (max-width: 1200px) {
     grid-template-columns: 1fr;
@@ -40,6 +42,17 @@ export const ExperienceTextWrapper = styled.div`
     grid-gap: 0px;
     padding: 0px 30px;
   }
+`;
+
+export const ExperienceTitle = styled.h1`
+  margin: 50px 0px 44px 0px;
+`;
+
+export const ExperienceTextBody = styled.p`
+  text-align: center;
+  font-size: ${({ experiencesContent }) => experiencesContent["BodyFontSize"]};
+  line-height: ${({ experiencesContent }) =>
+    experiencesContent["BodyLineHeight"]};
 `;
 
 export const ExperienceWrapper = styled.div`
@@ -72,4 +85,21 @@ export const ExperienceCard = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+`;
+
+export const ExperienceCardBackBody = styled.div`
+  margin: 0px 10px;
+`;
+
+export const ExperienceCardImage = styled(Image).attrs((props) => ({
+  width: 0,
+  height: 0,
+  sizes: "100vw",
+  src: "/api/images/" + props.src,
+}))`
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+  layout: fill;
 `;

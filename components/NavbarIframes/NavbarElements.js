@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import { Link as LinkRouter } from "react-router-dom";
 import Link from "next/link";
 
 export const Nav = styled.nav`

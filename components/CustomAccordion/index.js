@@ -1,49 +1,57 @@
 import Accordion from "react-bootstrap/Accordion";
 
 import {
-  AccordionTitleWrapper,
-  AccordionHeaderWrapper,
+  AccordionSection,
+  AccordionSectionHeaderWrapper,
+  AccordionSectionSubtitle,
+  AccordionSectionTitle,
+  AccordionElementHeaderWrapper,
+  AccordionElementSubtitle,
+  AccordionElementTitle,
+  AccordionElementBody,
+  AccordionElementTimespan,
 } from "./CustomAccordionElements";
 
-// Accordion Title Based on Input
-const AccordionTitleDetails = ({ accordionTitle, accordionSubtitle }) => {
+// Accordion Section Header - Title and Subtitle
+const AccordionSectionHeader = ({ accordionTitle, accordionSubtitle }) => {
   return (
-    <div>
+    <>
       {accordionSubtitle ? (
-        <AccordionTitleWrapper accordionSubtitle={accordionSubtitle}>
-          <div>{accordionTitle}</div>
-          <div style={{ fontWeight: "bold", marginTop: "3px" }}>
+        <AccordionSectionHeaderWrapper accordionSubtitle={accordionSubtitle}>
+          <AccordionSectionTitle>{accordionTitle}</AccordionSectionTitle>
+          <AccordionSectionSubtitle>
             {accordionSubtitle}
-          </div>
-        </AccordionTitleWrapper>
+          </AccordionSectionSubtitle>
+        </AccordionSectionHeaderWrapper>
       ) : (
-        <AccordionTitleWrapper accordionSubtitle={accordionSubtitle}>
+        <AccordionSectionHeaderWrapper accordionSubtitle={accordionSubtitle}>
           {accordionTitle}
-        </AccordionTitleWrapper>
+        </AccordionSectionHeaderWrapper>
       )}
-    </div>
+    </>
   );
 };
 
-// Accordion Header Based on Input
-const AccordionHeaderDetails = ({ title, subtitle }) => {
+// Accordion Element Header - Title and Subtitle
+const AccordionElementHeader = ({ title, subtitle }) => {
   return (
     <div>
       {subtitle ? (
-        <AccordionHeaderWrapper subtitle={subtitle}>
-          <span style={{ fontWeight: "600" }}>{title}</span>
+        <AccordionElementHeaderWrapper subtitle={subtitle}>
+          <AccordionElementTitle>{title}</AccordionElementTitle>
           <br />
-          <span style={{ fontWeight: "400" }}>{subtitle}</span>
-        </AccordionHeaderWrapper>
+          <AccordionElementSubtitle>{subtitle}</AccordionElementSubtitle>
+        </AccordionElementHeaderWrapper>
       ) : (
-        <AccordionHeaderWrapper subtitle={subtitle}>
+        <AccordionElementHeaderWrapper subtitle={subtitle}>
           {title}
-        </AccordionHeaderWrapper>
+        </AccordionElementHeaderWrapper>
       )}
     </div>
   );
 };
 
+// Full Accordion Section
 const CustomAccordion = ({
   accordionTitle,
   accordionSubtitle,
@@ -51,36 +59,45 @@ const CustomAccordion = ({
   accordionTheme,
 }) => {
   return (
-    <div
-      className={
-        accordionTheme == "light" ? "accordion-light" : "accordion-dark"
-      }
-      style={{
-        width: "100%",
-        zIndex: "1",
-      }}
-    >
-      <AccordionTitleDetails
-        accordionTitle={accordionTitle}
-        accordionSubtitle={accordionSubtitle}
-      />
-      <Accordion flush>
-        {accordionContents.map(({ title, subtitle, body, timespan }, index) => (
-          <Accordion.Item key={index.toString()} eventKey={index.toString()}>
-            <Accordion.Header>
-              <AccordionHeaderDetails title={title} subtitle={subtitle} />
-            </Accordion.Header>
-            <Accordion.Body>
-              <div style={{ lineHeight: "30px" }}>
-                {body}
-                <br />
-                <i style={{ fontSize: "14px" }}>{timespan}</i>
-              </div>
-            </Accordion.Body>
-          </Accordion.Item>
-        ))}
-      </Accordion>
-    </div>
+    <>
+      <AccordionSection accordionTheme={accordionTheme}>
+        <AccordionSectionHeader
+          accordionTitle={accordionTitle}
+          accordionSubtitle={accordionSubtitle}
+        />
+        <Accordion flush>
+          {accordionContents.map(
+            ({ title, subtitle, body, timespan }, index) => (
+              <Accordion.Item
+                key={index.toString()}
+                eventKey={index.toString()}
+              >
+                <Accordion.Header>
+                  <AccordionElementHeader title={title} subtitle={subtitle} />
+                </Accordion.Header>
+                <Accordion.Body>
+                  <AccordionElementBody>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: body,
+                      }}
+                    />
+                    <br />
+                    <AccordionElementTimespan>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: timespan,
+                        }}
+                      />
+                    </AccordionElementTimespan>
+                  </AccordionElementBody>
+                </Accordion.Body>
+              </Accordion.Item>
+            )
+          )}
+        </Accordion>
+      </AccordionSection>
+    </>
   );
 };
 

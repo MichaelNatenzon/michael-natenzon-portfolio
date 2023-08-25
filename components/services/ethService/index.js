@@ -1,3 +1,8 @@
+// Miscellaneous ETH Services
+
+// Price of: ETH, Gas, Balance
+// State address state as selected Metamask address
+
 export const getBalance = (address, setCurrentBalance) => {
   try {
     window.ethereum
@@ -18,10 +23,10 @@ export const getGasPrice = (setCurrentGasPrice) => {
 
 export const getEthPrice = (setCurrentEthPrice) => {
   window
-    .fetch("https://api.gemini.com/v2/ticker/ethusd", { method: "GET" })
+    .fetch("/api/eth-price", { method: "GET" })
     .then((result) => result.json())
-    .then((data) => {
-      setCurrentEthPrice(data.ask);
+    .then((result) => {
+      setCurrentEthPrice(result.message.usd);
     });
 };
 
@@ -30,5 +35,3 @@ export const getSelectedAddress = (setSelectedAddress) => {
     setSelectedAddress(ethereum.selectedAddress);
   } catch {}
 };
-
-export const checkAddress = (address) => {};

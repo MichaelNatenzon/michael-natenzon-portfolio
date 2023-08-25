@@ -1,3 +1,5 @@
+const API_URL = "https://themichaelnatenzon.com";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -18,4 +20,17 @@ const defaultConfig = (phase, { defaultConfig }) => {
   return defaultConfig;
 };
 
-(module.exports = nextConfig), defaultConfig;
+((module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        // destination: "http://localhost:7071/:path*",
+        destination: `${API_URL}/:path*`,
+        // destination: "https://bowtiedbitcoin.com/:path*",
+      },
+    ];
+  },
+}),
+nextConfig),
+  defaultConfig;

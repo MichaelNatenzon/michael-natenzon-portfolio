@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { animateScroll as scroll } from "react-scroll/modules";
+import React from "react";
 import CustomAccordion from "../CustomAccordion";
 
 import {
@@ -10,43 +9,44 @@ import {
   CourseworkDetailsBottom,
 } from "./CourseworkElements";
 
-import {
-  accordionAContents,
-  accordionATitle,
-  accordionASubtitle,
-  accordionBContents,
-  accordionBSubtitle,
-  accordionBTitle,
-} from "./Data";
-
-const Coursework = () => {
+// Create a 2-column section to display coursework
+const Coursework = ({ courseworkDetails }) => {
   return (
     <CourseworkBackdrop>
       <CourseworkContainers>
         <CourseworkWrapper>
           <CourseworkAccordion>
             <CustomAccordion
-              accordionTitle={accordionATitle}
-              accordionSubtitle={accordionASubtitle}
-              accordionContents={accordionAContents}
+              accordionTitle={courseworkDetails["FirstAccordion"]["Title"]}
+              accordionSubtitle={
+                courseworkDetails["FirstAccordion"]["Subtitle"]
+              }
+              accordionContents={
+                courseworkDetails["FirstAccordion"]["Contents"]
+              }
               accordionTheme="dark"
             />
           </CourseworkAccordion>
           <CourseworkAccordion>
             <CustomAccordion
-              accordionTitle={accordionBTitle}
-              accordionContents={accordionBContents}
-              accordionSubtitle={accordionBSubtitle}
+              accordionTitle={courseworkDetails["SecondAccordion"]["Title"]}
+              accordionSubtitle={
+                courseworkDetails["SecondAccordion"]["Subtitle"]
+              }
+              accordionContents={
+                courseworkDetails["SecondAccordion"]["Contents"]
+              }
               accordionTheme="dark"
             />
           </CourseworkAccordion>
         </CourseworkWrapper>
         <CourseworkDetailsBottom accordionTheme="dark">
           <a
-            href="/documents/MichaelNatenzon_CurriculumVitae.pdf"
+            href={"/api/documents/" + courseworkDetails["LinkedFilePath"]}
             target="_blank"
+            rel="noreferrer"
           >
-            Click Here for a Complete Course Overview
+            {courseworkDetails["LinkedText"]}
           </a>
         </CourseworkDetailsBottom>
       </CourseworkContainers>

@@ -19,6 +19,7 @@ const NavbarIframePage = ({
   userDetails,
   setUserDetails,
   setLoginType,
+  navbarContent,
 }) => {
   const [scrollNav, setScrollNav] = useState(false);
 
@@ -39,15 +40,15 @@ const NavbarIframePage = ({
       <NavbarContainer>
         <NavMenuNonMobile>
           <NavItem>
-            <NavLinks href="/">
-              <a>Home</a>
-            </NavLinks>
+            <NavLinks href="/">Home</NavLinks>
           </NavItem>
         </NavMenuNonMobile>
         <Spacer />
         <NavMenu>
           <NavItem>
-            <NavExternalLinks onClick={toggle}>Code Projects</NavExternalLinks>
+            <NavExternalLinks onClick={toggle}>
+              {navbarContent["SideMenuToggle"]}
+            </NavExternalLinks>
           </NavItem>
         </NavMenu>
         <Spacer />
@@ -55,11 +56,11 @@ const NavbarIframePage = ({
           <NavItem>
             <NavExternalLinks>
               <a
-                href="https://www.theageofnano.com/"
+                href={navbarContent["ExternalLink"]["Url"]}
                 target="_blank"
                 rel="noreferrer"
               >
-                The Age of Nano
+                {navbarContent["ExternalLink"]["Text"]}
               </a>
             </NavExternalLinks>
           </NavItem>
