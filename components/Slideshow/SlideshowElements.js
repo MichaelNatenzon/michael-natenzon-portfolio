@@ -159,6 +159,11 @@ export const SlideshowBottomText = styled.div`
     margin: auto;
     margin-bottom: 30px;
   }
+
+  @media screen and (max-width: 540px) {
+    font-size: 12px;
+    line-height: 14px;
+  }
 `;
 
 export const SlideshowBottomLine = styled.div`

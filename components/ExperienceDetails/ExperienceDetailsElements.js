@@ -38,6 +38,15 @@ export const ExperienceDetailsWrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    margin-top: 30px;
+  }
+
+  @media screen and (max-width: 540px) {
+    grid-template-columns: 1fr;
+    padding: 0px;
+    grid-gap: 0px;
   }
 `;
 
@@ -58,5 +67,11 @@ export const ExperienceDetailsBottom = styled.div`
   a {
     color: ${({ accordionTheme }) =>
       accordionTheme == "light" ? "#000" : "#fff"};
+  }
+
+  @media screen and (max-width: 540px) {
+    font-size: 22px;
+    padding-top: 20px;
+    padding-bottom: 25px;
   }
 `;

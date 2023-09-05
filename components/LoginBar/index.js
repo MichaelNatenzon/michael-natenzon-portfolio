@@ -4,7 +4,11 @@ import { toast } from "react-toastify";
 import { ethers } from "ethers";
 import Link from "next/link";
 
-import { getGasPrice, getEthPrice, getBalance } from "../services/ethService";
+import {
+  getEthWeiGasPrice,
+  getEthPrice,
+  getBalance,
+} from "../services/ethService";
 import { MetaLoginButton } from "../services/Metamask";
 import { UDLoginButton } from "../services/UnstoppableDomains";
 
@@ -35,14 +39,14 @@ const LoginMenu = ({
   setUserDetails,
   utilityUrls,
 }) => {
-  const [currentGasPrice, setCurrentGasPrice] = useState(0);
+  const [currentEthWeiGasPrice, setCurrentEthWeiGasPrice] = useState(0);
   const [currentEthPrice, setCurrentEthPrice] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
   const [btcMetrics, setBtcMetrics] = useState({ satoshi: "", usd: "" });
 
   // Update Gas and Asset Market Prices
   useEffect(() => {
-    getGasPrice(setCurrentGasPrice);
+    getEthWeiGasPrice(setCurrentEthWeiGasPrice);
     getEthPrice(setCurrentEthPrice);
     getBtcMetrics(setBtcMetrics);
 
@@ -52,26 +56,28 @@ const LoginMenu = ({
   }, [toggleLoginMenu]);
 
   // Supporting Functions for Formatting
-  const formatBalance = ethers.utils
-    .formatEther(currentBalance)
+  const formatGasCostETH = (
+    21000 * ethers.utils.formatEther(currentEthWeiGasPrice)
+  )
     .toString()
     .substring(0, 8);
 
-  const formatCurrentGasPrice = Math.round(
-    ethers.utils.formatUnits(currentGasPrice, "gwei")
-  ).toString();
-
-  const formatCurrentEthPrice = Math.round(currentEthPrice).toString();
-
-  const formatGasCost = (
-    ethers.utils.formatEther(currentGasPrice) *
-    currentEthPrice *
-    21000
+  const formatGasCostUSD = (
+    21000 *
+    ethers.utils.formatEther(currentEthWeiGasPrice) *
+    currentEthPrice
   )
     .toFixed(2)
     .toString();
 
-  const formatBalanceUSD = (formatBalance * formatCurrentEthPrice)
+  const formatBalanceETH = ethers.utils
+    .formatEther(currentBalance)
+    .toString()
+    .substring(0, 8);
+
+  const formatBalanceUSD = (
+    ethers.utils.formatEther(currentBalance) * currentEthPrice
+  )
     .toFixed(2)
     .toLocaleString();
 
@@ -86,7 +92,7 @@ const LoginMenu = ({
           <BalanceWrapper>
             <b>ETH Balance</b>
             <br />
-            {formatBalance} (${formatBalanceUSD})
+            {formatBalanceETH} (${formatBalanceUSD})
           </BalanceWrapper>
           <b>Network Tx Fees</b>
           <br />
@@ -95,7 +101,7 @@ const LoginMenu = ({
             target="_blank"
             rel="noreferrer"
           >
-            {(21000 * formatCurrentGasPrice) / 10 ** 9} ETH (${formatGasCost})
+            {formatGasCostETH} ETH (${formatGasCostUSD})
           </Link>
 
           {/* Only show BTC metrics if there are metrics to show */}
@@ -110,7 +116,10 @@ const LoginMenu = ({
                 rel="noreferrer"
               >
                 {btcMetrics["satoshi"].toLocaleString()} Satoshis ($
-                {(Math.round(btcMetrics["usd"] * 100) / 100).toString()})
+                {(Math.round(btcMetrics["usd"] * 100) / 100)
+                  .toFixed(2)
+                  .toString()}
+                )
               </Link>
             </>
           )}

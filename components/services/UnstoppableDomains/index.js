@@ -2,6 +2,8 @@ import UAuth from "@uauth/js";
 
 import { LoginButton } from "./UnstoppableDomainsElements";
 
+import { toast } from "react-toastify";
+
 // Unstoppable Domains Auth Service
 const uauthDetails = {
   clientID: process.env.NEXT_PUBLIC_UD_CLIENT_ID,
@@ -23,7 +25,7 @@ const UDLogin = async (setUserDetails) => {
     localStorage.setItem("token", JSON.stringify(NewUserDetails));
     setUserDetails(NewUserDetails);
   } catch (error) {
-    toast.error("Cancelled Unstoppable Domains Login", {
+    toast.error("Couldn't Login Using Unstoppable Domains", {
       position: "top-center",
       autoClose: 2200,
       closeOnClick: true,

@@ -36,7 +36,7 @@ export const NavbarContainer = styled.div`
 `;
 
 export const NavMenuNonMobile = styled.ul`
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 650px) {
     display: none;
   }
 

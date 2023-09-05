@@ -31,19 +31,25 @@ export const CourseworkContainers = styled.div`
 export const CourseworkWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: ;
+  align-items: center;
   grid-gap: 30px;
   padding: 60px 0px 70px 0px;
 
   @media screen and (max-width: 1130px) {
     grid-template-columns: 1fr;
-
     padding-left: 20px;
     padding-right: 20px;
   }
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
+  }
+
+  @media screen and (max-width: 540px) {
+    padding-left: 0px;
+    padding-right: 0px;
+    grid-gap: 0px;
+    padding-bottom: 0px;
   }
 `;
 
@@ -64,5 +70,11 @@ export const CourseworkDetailsBottom = styled.div`
   a {
     color: ${({ accordionTheme }) =>
       accordionTheme == "light" ? "#000" : "#fff"};
+  }
+
+  @media screen and (max-width: 540px) {
+    font-size: 22px;
+    padding-top: 15px;
+    padding-bottom: 25px;
   }
 `;

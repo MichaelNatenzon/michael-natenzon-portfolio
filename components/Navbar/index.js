@@ -46,6 +46,7 @@ const Navbar = ({
               spy={true}
               exact="true"
               offset={-60}
+              href="#home"
             >
               Home
             </NavLinks>
@@ -54,7 +55,13 @@ const Navbar = ({
         <Spacer />
         <NavMenu>
           <NavItem>
-            <NavLinks to="experience" duration={500} spy={true} exact="true">
+            <NavLinks
+              to="experience"
+              duration={500}
+              spy={true}
+              exact="true"
+              href="#experience"
+            >
               {navbarContent["FirstSectionAnchor"]}
             </NavLinks>
           </NavItem>

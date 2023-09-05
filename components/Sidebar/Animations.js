@@ -21,13 +21,14 @@ export const variantsNav = {
 
 export const variantsList = {
   hidden: {
-    opacity: 0,
+    opacity: 1,
     transition: {
       delay: 0.8,
     },
   },
   visible: {
     transition: {
+      opacity: 1,
       delay: 0.8,
       delayChildren: 0.6,
       staggerChildren: 0.8,

@@ -50,9 +50,13 @@ export const ExperienceTitle = styled.h1`
 
 export const ExperienceTextBody = styled.p`
   text-align: center;
-  font-size: ${({ experiencesContent }) => experiencesContent["BodyFontSize"]};
-  line-height: ${({ experiencesContent }) =>
-    experiencesContent["BodyLineHeight"]};
+  font-size: 24px;
+  line-height: 28px;
+
+  @media screen and (max-width: 540px) {
+    font-size: 18px;
+    line-height: 22px;
+  }
 `;
 
 export const ExperienceWrapper = styled.div`
@@ -76,7 +80,7 @@ export const ExperienceWrapper = styled.div`
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-gap: 0px;
-    padding: 50px 0px 0px 0px;
+    padding: 50px 0px 50px 0px;
   }
 `;
 
@@ -85,10 +89,20 @@ export const ExperienceCard = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-gap: 0px;
+    padding: 0px 15px 100px 15px;
+  }
 `;
 
 export const ExperienceCardBackBody = styled.div`
   margin: 0px 10px;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 20px;
+  }
 `;
 
 export const ExperienceCardImage = styled(Image).attrs((props) => ({

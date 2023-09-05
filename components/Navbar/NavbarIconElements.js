@@ -23,4 +23,8 @@ export const IconButton = styled(motion.button)`
   background: transparent;
   border: 0;
   color: #fff;
+
+  @media screen and (max-width: 540px) {
+    margin-left: 90px;
+  }
 `;

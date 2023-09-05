@@ -1,15 +1,14 @@
 const API_URL = "https://themichaelnatenzon.com";
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains: ["themichaelnatenzon.com"],
-    loader: "custom",
-    unoptimized: true,
-  },
-  trailingSlash: true,
-};
+// const nextConfig = {
+//   reactStrictMode: true,
+//   images: {
+//     loader: "custom",
+//     unoptimized: true,
+//   },
+//   trailingSlash: true,
+// };
 
 const defaultConfig = (phase, { defaultConfig }) => {
   if ("sassOptions" in defaultConfig) {
@@ -18,10 +17,16 @@ const defaultConfig = (phase, { defaultConfig }) => {
       prependData: `@import "~@styles/variables.scss";`,
     };
   }
+  defaultConfig["reactStrictMode"] = true;
+  defaultConfig["trailingSlash"] = true;
+  defaultConfig["images"] = {
+    loader: "custom",
+    unoptimized: true,
+  };
   return defaultConfig;
 };
 
-((module.exports = {
+(module.exports = {
   async rewrites() {
     return [
       {
@@ -33,5 +38,4 @@ const defaultConfig = (phase, { defaultConfig }) => {
     ];
   },
 }),
-nextConfig),
   defaultConfig;

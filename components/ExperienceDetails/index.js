@@ -1,5 +1,5 @@
 import React from "react";
-import CustomAccordion from "../CustomAccordion";
+import FixedHeightAccordion from "../FixedHeightAccordion";
 
 import {
   ExperienceDetailsContainers,
@@ -14,14 +14,14 @@ const ExperienceDetails = ({ experienceDetails }) => {
     <ExperienceDetailsContainers>
       <ExperienceDetailsWrapper>
         <ExperienceDetailsAccordion>
-          <CustomAccordion
+          <FixedHeightAccordion
             accordionTitle={experienceDetails["FirstAccordion"]["Title"]}
             accordionContents={experienceDetails["FirstAccordion"]["Contents"]}
             accordionTheme="light"
           />
         </ExperienceDetailsAccordion>
         <ExperienceDetailsAccordion>
-          <CustomAccordion
+          <FixedHeightAccordion
             accordionTitle={experienceDetails["SecondAccordion"]["Title"]}
             accordionContents={experienceDetails["SecondAccordion"]["Contents"]}
             accordionTheme="light"

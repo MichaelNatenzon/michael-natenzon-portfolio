@@ -9,7 +9,11 @@ import {
   IconButton,
 } from "./NavbarIconElements";
 
-export const NavbarIcon = ({ toggleLoginMenu, userDetails, setUserDetails }) => {
+export const NavbarIcon = ({
+  toggleLoginMenu,
+  userDetails,
+  setUserDetails,
+}) => {
   // If user is logged in display username
   // Otherwise display login icon
   return userDetails ? (
@@ -44,7 +48,7 @@ export const NavbarIcon = ({ toggleLoginMenu, userDetails, setUserDetails }) => 
     </UsernameContainer>
   ) : (
     <IconButtonContainer>
-      <IconButton onClick={toggleLoginMenu}>
+      <IconButton id="Login" aria-label="Login" onClick={toggleLoginMenu}>
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"

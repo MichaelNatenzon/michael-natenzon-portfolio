@@ -13,11 +13,15 @@ export const getBalance = (address, setCurrentBalance) => {
   } catch {}
 };
 
-export const getGasPrice = (setCurrentGasPrice) => {
+export const getEthWeiGasPrice = (setCurrentEthWeiGasPrice) => {
   try {
-    window.ethereum.request({ method: "eth_gasPrice" }).then((gasPrice) => {
-      setCurrentGasPrice(gasPrice);
-    });
+    window.ethereum
+      .request({
+        method: "eth_gasPrice",
+      })
+      .then((gasPrice) => {
+        setCurrentEthWeiGasPrice(parseInt(gasPrice));
+      });
   } catch {}
 };
 

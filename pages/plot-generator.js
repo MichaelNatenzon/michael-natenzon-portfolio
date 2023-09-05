@@ -144,6 +144,7 @@ export default function Home({ pageContent }) {
           toggleEthSendModal={toggleEthSendModal}
           setUserDetails={setUserDetails}
           userDetails={userDetails}
+          utilityUrls={pageContent["Utilities"]}
         />
         <PlotGenerator
           userDetails={userDetails}

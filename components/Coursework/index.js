@@ -1,5 +1,5 @@
 import React from "react";
-import CustomAccordion from "../CustomAccordion";
+import FixedHeightAccordion from "../FixedHeightAccordion";
 
 import {
   CourseworkBackdrop,
@@ -16,7 +16,7 @@ const Coursework = ({ courseworkDetails }) => {
       <CourseworkContainers>
         <CourseworkWrapper>
           <CourseworkAccordion>
-            <CustomAccordion
+            <FixedHeightAccordion
               accordionTitle={courseworkDetails["FirstAccordion"]["Title"]}
               accordionSubtitle={
                 courseworkDetails["FirstAccordion"]["Subtitle"]
@@ -28,7 +28,7 @@ const Coursework = ({ courseworkDetails }) => {
             />
           </CourseworkAccordion>
           <CourseworkAccordion>
-            <CustomAccordion
+            <FixedHeightAccordion
               accordionTitle={courseworkDetails["SecondAccordion"]["Title"]}
               accordionSubtitle={
                 courseworkDetails["SecondAccordion"]["Subtitle"]
