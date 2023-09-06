@@ -17,12 +17,6 @@ const defaultConfig = (phase, { defaultConfig }) => {
       prependData: `@import "~@styles/variables.scss";`,
     };
   }
-  defaultConfig["reactStrictMode"] = true;
-  defaultConfig["trailingSlash"] = true;
-  defaultConfig["images"] = {
-    loader: "custom",
-    unoptimized: true,
-  };
   return defaultConfig;
 };
 
@@ -34,6 +28,13 @@ const defaultConfig = (phase, { defaultConfig }) => {
         destination: `${API_URL}/:path*`,
       },
     ];
+  },
+  reactStrictMode: true,
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+    domains: ["themichaelnatenzon.com"],
+    path: "themichaelnatenzon.com/images",
   },
 }),
   defaultConfig;

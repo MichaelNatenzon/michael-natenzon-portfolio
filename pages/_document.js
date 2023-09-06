@@ -34,11 +34,11 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <script
+          <Script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-SDEKWXGLEM"
           />
-          <script
+          <Script
             id="google-analytics"
             dangerouslySetInnerHTML={{
               __html: `

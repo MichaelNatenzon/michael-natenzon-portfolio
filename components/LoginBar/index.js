@@ -53,7 +53,7 @@ const LoginMenu = ({
     if (userDetails) {
       getBalance(userDetails.wallet, setCurrentBalance);
     }
-  }, [toggleLoginMenu]);
+  }, [toggleLoginMenu, userDetails]);
 
   // Supporting Functions for Formatting
   const formatGasCostETH = (
