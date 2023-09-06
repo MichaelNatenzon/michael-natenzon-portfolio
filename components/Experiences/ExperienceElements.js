@@ -109,7 +109,7 @@ export const ExperienceCardImage = styled(Image).attrs((props) => ({
   width: 0,
   height: 0,
   sizes: "100vw",
-  src: "/api/images/" + props.src,
+  src: "api/images/" + props.src,
 }))`
   width: 100%;
   height: 400px;

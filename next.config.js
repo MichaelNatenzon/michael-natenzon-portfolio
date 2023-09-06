@@ -31,9 +31,7 @@ const defaultConfig = (phase, { defaultConfig }) => {
     return [
       {
         source: "/api/:path*",
-        // destination: "http://localhost:7071/:path*",
         destination: `${API_URL}/:path*`,
-        // destination: "https://bowtiedbitcoin.com/:path*",
       },
     ];
   },

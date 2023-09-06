@@ -1,10 +1,15 @@
 // components/Image.js
-import NextImage from "next/image";
-
-const customLoader = ({ src }) => {
-  return src;
-};
+import * as CustomImage from "next/image";
 
 export default function Image(props) {
-  return <NextImage {...props} loader={customLoader} unoptimized={true} />;
+  return (
+    <CustomImage
+      src={props.src}
+      width={props.width}
+      height={props.height}
+      alt={props.alt}
+      fill
+      unoptimized
+    />
+  );
 }
