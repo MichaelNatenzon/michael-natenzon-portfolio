@@ -21,19 +21,6 @@ const defaultConfig = (phase, { defaultConfig }) => {
 };
 
 (module.exports = {
-  async rewrites() {
-    return {
-      beforeFiles: [
-        // These rewrites are checked after headers/redirects
-        // and before all files including _next/public files which
-        // allows overriding page files
-        {
-          source: "/api/:path*",
-          destination: `${API_URL}/:path*`,
-        },
-      ],
-    };
-  },
   reactStrictMode: true,
   trailingSlash: true,
   images: {

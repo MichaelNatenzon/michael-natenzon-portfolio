@@ -27,7 +27,7 @@ export const getEthWeiGasPrice = (setCurrentEthWeiGasPrice) => {
 
 export const getEthPrice = (setCurrentEthPrice) => {
   window
-    .fetch("/api/eth-price", { method: "GET" })
+    .fetch("https://themichaelnatenzon.com/eth-price", { method: "GET" })
     .then((result) => result.json())
     .then((result) => {
       setCurrentEthPrice(result.message.usd);
