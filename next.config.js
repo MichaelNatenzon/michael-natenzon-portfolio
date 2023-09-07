@@ -22,19 +22,24 @@ const defaultConfig = (phase, { defaultConfig }) => {
 
 (module.exports = {
   async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: `${API_URL}/:path*`,
-      },
-    ];
+    return {
+      beforeFiles: [
+        // These rewrites are checked after headers/redirects
+        // and before all files including _next/public files which
+        // allows overriding page files
+        {
+          source: "/api/:path*",
+          destination: `${API_URL}/:path*`,
+        },
+      ],
+    };
   },
   reactStrictMode: true,
   trailingSlash: true,
   images: {
     unoptimized: true,
     domains: ["themichaelnatenzon.com"],
-    path: "themichaelnatenzon.com/images",
+    path: ["themichaelnatenzon.com/images"],
   },
 }),
   defaultConfig;
