@@ -51,7 +51,7 @@ class MyDocument extends Document {
             }}
           />
           <meta name="theme-color" content="#12162b" />
-          <link rel="manifest" href="manifest.json" />
+          <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
           <Main />

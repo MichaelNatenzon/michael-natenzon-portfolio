@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const API_URL = "https://themichaelnatenzon.com";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const response = await fetch(`${API_URL}/home-content`, {
     method: "GET",
   });
@@ -41,6 +41,23 @@ export default function Home({ pageContent }) {
   const [countOpenEthSend, setCountOpenEthSend] = useState(0);
 
   const [countConnectionChecks, setCountConnectionChecks] = useState(0);
+
+  const fetchData = async () => {
+    const resJson = await fetch(`/api/home-content`).then((response) =>
+      response.json()
+    );
+    const pageContent = resJson["message"];
+
+    return {
+      props: {
+        pageContent,
+      },
+    };
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (countConnectionChecks == 0) {

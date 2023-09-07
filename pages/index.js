@@ -19,7 +19,7 @@ import SendBTCQR from "../components/services/btcService";
 
 const API_URL = "https://themichaelnatenzon.com"; //process.env;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // Fetch data from external API
   const response = await fetch(`${API_URL}/home-content`, {
     method: "GET",
@@ -50,6 +50,23 @@ export default function Home({ pageContent }) {
   const [countOpenBtcSend, setCountOpenBtcSend] = useState(0);
 
   const [countConnectionChecks, setCountConnectionChecks] = useState(0);
+
+  const fetchData = async () => {
+    const resJson = await fetch(`/api/home-content`).then((response) =>
+      response.json()
+    );
+    const pageContent = resJson["message"];
+
+    return {
+      props: {
+        pageContent,
+      },
+    };
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (countConnectionChecks == 0) {
