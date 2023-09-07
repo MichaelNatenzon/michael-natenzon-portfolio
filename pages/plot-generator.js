@@ -13,8 +13,10 @@ import styles from "../styles/Home.module.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const API_URL = "https://themichaelnatenzon.com";
+
 export async function getStaticProps() {
-  const response = await fetch(`https://themichaelnatenzon.com/home-content`, {
+  const response = await fetch(`${API_URL}/home-content`, {
     method: "GET",
   });
   const resJson = await response.json();
@@ -41,9 +43,9 @@ export default function Home({ pageContent }) {
   const [countConnectionChecks, setCountConnectionChecks] = useState(0);
 
   const fetchData = async () => {
-    const resJson = await fetch(
-      `https://themichaelnatenzon.com/home-content`
-    ).then((response) => response.json());
+    const resJson = await fetch(`/api/home-content`).then((response) =>
+      response.json()
+    );
     const pageContent = resJson["message"];
 
     return {

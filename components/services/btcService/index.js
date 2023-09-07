@@ -5,7 +5,7 @@ import { CenteredDiv, BtcQrImage } from "./BtcServiceElements";
 
 // Retrieve BTC TX Fee Metrics
 export const getBtcMetrics = async (setBtcMetrics) => {
-  const response = await fetch(`https://themichaelnatenzon.com/btc-tx-cost`, {
+  const response = await fetch(`/api/btc-tx-cost`, {
     method: "GET",
   });
   const resJson = await response.json();
