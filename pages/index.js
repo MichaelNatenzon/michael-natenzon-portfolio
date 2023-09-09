@@ -21,9 +21,7 @@ export async function getStaticProps() {
   // Fetch data from external API
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`,
-    {
-      method: "GET",
-    }
+    { next: { revalidate: 0 }, cache: "no-store" }
   );
   const resJson = await response.json();
   const pageContent = resJson["message"];
