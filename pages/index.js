@@ -17,13 +17,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SendBTCQR from "../components/services/btcService";
 
-const API_URL = "https://themichaelnatenzon.com"; //process.env;
-
 export async function getStaticProps() {
   // Fetch data from external API
-  const response = await fetch(`${API_URL}/home-content`, {
-    method: "GET",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`,
+    {
+      method: "GET",
+    }
+  );
   const resJson = await response.json();
   const pageContent = resJson["message"];
 
@@ -52,9 +53,9 @@ export default function Home({ pageContent }) {
   const [countConnectionChecks, setCountConnectionChecks] = useState(0);
 
   const fetchData = async () => {
-    const resJson = await fetch(`/api/home-content`).then((response) =>
-      response.json()
-    );
+    const resJson = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`
+    ).then((response) => response.json());
     const pageContent = resJson["message"];
 
     return {

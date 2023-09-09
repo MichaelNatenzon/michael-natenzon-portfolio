@@ -139,7 +139,7 @@ const Slideshow = ({ slideshowContent }) => {
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat",
 
-              backgroundImage: `url("/api/images/Michael_Natenzon.png")`,
+              backgroundImage: `url("${process.env.NEXT_PUBLIC_BACKEND_API_URL}/images/Michael_Natenzon.png")`,
             }}
           ></motion.div>
         </SlideshowGrid>
