@@ -42,7 +42,10 @@ const Coursework = ({ courseworkDetails }) => {
         </CourseworkWrapper>
         <CourseworkDetailsBottom accordionTheme="dark">
           <a
-            href={"/api/documents/" + courseworkDetails["LinkedFilePath"]}
+            href={
+              `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/documents/` +
+              courseworkDetails["LinkedFilePath"]
+            }
             target="_blank"
             rel="noreferrer"
           >

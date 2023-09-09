@@ -30,7 +30,10 @@ const ExperienceDetails = ({ experienceDetails }) => {
       </ExperienceDetailsWrapper>
       <ExperienceDetailsBottom accordionTheme="light">
         <a
-          href={"/api/documents/" + experienceDetails["LinkedFilePath"]}
+          href={
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/documents/` +
+            experienceDetails["LinkedFilePath"]
+          }
           target="_blank"
           rel="noreferrer"
         >
