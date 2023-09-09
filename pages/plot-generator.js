@@ -27,6 +27,7 @@ export async function getStaticProps() {
     props: {
       pageContent,
     },
+    revalidate: 60,
   };
 }
 
