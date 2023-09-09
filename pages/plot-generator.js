@@ -43,23 +43,6 @@ export default function Home({ pageContent }) {
 
   const [countConnectionChecks, setCountConnectionChecks] = useState(0);
 
-  const fetchData = async () => {
-    const resJson = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`
-    ).then((response) => response.json());
-    const pageContent = resJson["message"];
-
-    return {
-      props: {
-        pageContent,
-      },
-    };
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   useEffect(() => {
     if (countConnectionChecks == 0) {
       setCountConnectionChecks(1);
@@ -67,7 +50,7 @@ export default function Home({ pageContent }) {
       setTimeout(setUserDetails(LocalUser()), 1000);
       setCountConnectionChecks(2);
     }
-  });
+  }, []);
 
   const toggle = () => {
     setIsOpen(!isOpen);

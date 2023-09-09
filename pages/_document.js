@@ -34,6 +34,11 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link
+            href="http://fonts.googleapis.com/css?family=Raleway"
+            rel="stylesheet"
+            type="text/css"
+          />
           <Script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-SDEKWXGLEM"
