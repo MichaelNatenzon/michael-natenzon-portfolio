@@ -6,6 +6,7 @@ import LoginMenu from "../components/LoginBar";
 import Footer from "../components/Footer";
 import SendEthForm from "../components/services/Metamask";
 import { LocalUser } from "../components/services/authService.js";
+import SendBTCQR from "../components/services/btcService";
 
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
@@ -15,8 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export async function getStaticProps() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`,
-    { next: { revalidate: 0 }, cache: "no-store" }
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`
   );
   const resJson = await response.json();
   const pageContent = resJson["message"];
@@ -25,7 +25,6 @@ export async function getStaticProps() {
     props: {
       pageContent,
     },
-    revalidate: 1,
   };
 }
 
@@ -39,6 +38,9 @@ export default function Home({ pageContent }) {
 
   const [openEthSend, setOpenEthSend] = useState(false);
   const [countOpenEthSend, setCountOpenEthSend] = useState(0);
+
+  const [openBtcSend, setOpenBtcSend] = useState(false);
+  const [countOpenBtcSend, setCountOpenBtcSend] = useState(0);
 
   const [countConnectionChecks, setCountConnectionChecks] = useState(0);
 
@@ -59,6 +61,11 @@ export default function Home({ pageContent }) {
   const toggleLoginMenu = () => {
     setToggleLogin(!toggleLogin);
     setCountToggleLogin(countToggleLogin + 1);
+  };
+
+  const toggleBtcSendModal = () => {
+    setOpenBtcSend(!openBtcSend);
+    setCountOpenBtcSend(countOpenBtcSend + 1);
   };
 
   const toggleEthSendModal = () => {
@@ -117,6 +124,14 @@ export default function Home({ pageContent }) {
           toggleEthSendModal={toggleEthSendModal}
           userDetails={userDetails}
         />
+        <SendBTCQR
+          openBtcSend={openBtcSend}
+          countOpenBtcSend={countOpenBtcSend}
+          toggleBtcSendModal={toggleBtcSendModal}
+          receiverAddress={pageContent["Wallets"]["BTC"]}
+          qrGeneratorLinks={pageContent["Utilities"]}
+        />
+
         <ToastContainer
           position="top-center"
           autoClose={5000}
@@ -142,6 +157,7 @@ export default function Home({ pageContent }) {
           toggleLoginMenu={toggleLogin}
           countToggleLogin={countToggleLogin}
           toggleEthSendModal={toggleEthSendModal}
+          toggleBtcSendModal={toggleBtcSendModal}
           setUserDetails={setUserDetails}
           userDetails={userDetails}
           utilityUrls={pageContent["Utilities"]}

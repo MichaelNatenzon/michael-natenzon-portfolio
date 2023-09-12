@@ -11,6 +11,10 @@ const PlotGenerator = ({ userDetails, url }) => {
     e.target != null ? setLoadingIframe(false) : "";
   }, []);
 
+  useEffect(() => {
+    userDetails ? "" : setLoadingIframe(true);
+  }, [userDetails]);
+
   return userDetails ? (
     <div className={styles}>
       <div>

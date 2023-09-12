@@ -20,22 +20,21 @@ import SendBTCQR from "../components/services/btcService";
 export async function getStaticProps() {
   // Fetch data from external API
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`,
-    { next: { revalidate: 0 }, cache: "no-store" }
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`
   );
   const resJson = await response.json();
-  const pageContent = resJson["message"];
+  const homeContent = resJson["message"];
 
   // Pass data to the page via props
   return {
     props: {
-      pageContent,
+      homeContent,
     },
-    revalidate: 1,
   };
 }
 
-export default function Home({ pageContent }) {
+export default function Home({ homeContent }) {
+  const [pageContent, setPageContent] = useState(homeContent);
   const [isOpen, setIsOpen] = useState(false);
   const [countOpen, setCountOpen] = useState(0);
   const [toggleLogin, setToggleLogin] = useState(false);
@@ -50,6 +49,20 @@ export default function Home({ pageContent }) {
   const [countOpenBtcSend, setCountOpenBtcSend] = useState(0);
 
   const [countConnectionChecks, setCountConnectionChecks] = useState(0);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`
+      );
+      const resJson = await response.json();
+      setPageContent(resJson["message"]);
+    } catch {}
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (countConnectionChecks == 0) {
