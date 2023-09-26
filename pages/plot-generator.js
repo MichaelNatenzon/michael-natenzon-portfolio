@@ -1,12 +1,5 @@
 import Head from "next/head";
-import PlotGenerator from "../components/GraphMaker";
-import NavbarIframePage from "../components/NavbarIframes";
-import Sidebar from "../components/Sidebar";
-import LoginMenu from "../components/LoginBar";
-import Footer from "../components/Footer";
-import SendEthForm from "../components/services/Metamask";
-import { LocalUser } from "../components/services/authService.js";
-import SendBTCQR from "../components/services/btcService";
+import Script from "next/script";
 
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
@@ -14,21 +7,31 @@ import styles from "../styles/Home.module.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import NavbarIframePage from "../components/NavbarIframes";
+import { LocalUser } from "../components/services/authService.js";
+import LoginMenu from "../components/LoginBar";
+import SendEthForm from "../components/services/Metamask";
+import SendBTCQR from "../components/services/btcService";
+import Sidebar from "../components/Sidebar";
+import PlotGenerator from "../components/GraphMaker";
+import Footer from "../components/Footer";
+
 export async function getStaticProps() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`
   );
   const resJson = await response.json();
-  const pageContent = resJson["message"];
+  const homeContent = resJson["message"];
 
   return {
     props: {
-      pageContent,
+      homeContent,
     },
   };
 }
 
-export default function Home({ pageContent }) {
+export default function Home({ homeContent }) {
+  const [pageContent, setPageContent] = useState(homeContent);
   const [isOpen, setIsOpen] = useState(false);
   const [countOpen, setCountOpen] = useState(0);
   const [toggleLogin, setToggleLogin] = useState(false);
@@ -43,6 +46,20 @@ export default function Home({ pageContent }) {
   const [countOpenBtcSend, setCountOpenBtcSend] = useState(0);
 
   const [countConnectionChecks, setCountConnectionChecks] = useState(0);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/home-content`
+      );
+      const resJson = await response.json();
+      setPageContent(resJson["message"]);
+    } catch {}
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (countConnectionChecks == 0) {
@@ -118,6 +135,16 @@ export default function Home({ pageContent }) {
       </Head>
 
       <main className={styles.fullpageiframe}>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-SDEKWXGLEM" />
+        <Script id="google-analytics">
+          {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+    
+              gtag('config', 'G-SDEKWXGLEM');
+            `}
+        </Script>
         <SendEthForm
           openEthSend={openEthSend}
           countOpenEthSend={countOpenEthSend}

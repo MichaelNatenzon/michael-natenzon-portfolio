@@ -1,8 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
-import Script from "next/script";
-
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
@@ -38,22 +36,6 @@ class MyDocument extends Document {
             href="http://fonts.googleapis.com/css?family=Raleway"
             rel="stylesheet"
             type="text/css"
-          />
-          <Script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-SDEKWXGLEM"
-          />
-          <Script
-            id="google-analytics"
-            dangerouslySetInnerHTML={{
-              __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-    
-              gtag('config', 'G-SDEKWXGLEM');
-            `,
-            }}
           />
           <meta name="theme-color" content="#12162b" />
           <link rel="manifest" href="/manifest.json" />

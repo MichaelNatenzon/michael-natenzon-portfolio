@@ -34,7 +34,9 @@ const Flipcard = ({ FrontImage, FrontContent, BackImage, BackContent }) => {
       >
         <FlipCardFront>
           <FlipCardFrontImage>{FrontImage}</FlipCardFrontImage>
-          <FlipCardFrontContent>{FrontContent}</FlipCardFrontContent>
+          <FlipCardFrontContent>
+            <div dangerouslySetInnerHTML={{ __html: FrontContent }} />
+          </FlipCardFrontContent>
         </FlipCardFront>
         <FlipCardBack>
           <FlipCardBackImage>{BackImage}</FlipCardBackImage>

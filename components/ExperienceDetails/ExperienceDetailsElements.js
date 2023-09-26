@@ -20,6 +20,10 @@ export const ExperienceDetailsContainers = styled.div`
   @media (min-width: 1400px) {
     width: 1140px;
   }
+
+  a {
+    color: #000 !important;
+  }
 `;
 
 export const ExperienceDetailsWrapper = styled.div`

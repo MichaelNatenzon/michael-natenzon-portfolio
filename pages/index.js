@@ -1,21 +1,24 @@
 import Head from "next/head";
-import Slideshow from "../components/Slideshow";
-import Experiences from "../components/Experiences";
-import ExperienceDetails from "../components/ExperienceDetails";
-import Coursework from "../components/Coursework";
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import LoginMenu from "../components/LoginBar";
-import Footer from "../components/Footer";
-import SendEthForm from "../components/services/Metamask";
-import { LocalUser } from "../components/services/authService.js";
+import Script from "next/script";
 
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import Navbar from "../components/Navbar";
+import { LocalUser } from "../components/services/authService.js";
+import LoginMenu from "../components/LoginBar";
 import SendBTCQR from "../components/services/btcService";
+import SendEthForm from "../components/services/Metamask";
+import Sidebar from "../components/Sidebar";
+import Slideshow from "../components/Slideshow";
+import Experiences from "../components/Experiences";
+import ExperienceDetails from "../components/ExperienceDetails";
+import Coursework from "../components/Coursework";
+
+import Footer from "../components/Footer";
 
 export async function getStaticProps() {
   // Fetch data from external API
@@ -30,6 +33,7 @@ export async function getStaticProps() {
     props: {
       homeContent,
     },
+    revalidate: 10,
   };
 }
 
@@ -136,6 +140,16 @@ export default function Home({ homeContent }) {
       </Head>
 
       <main className={styles.main}>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-SDEKWXGLEM" />
+        <Script id="google-analytics">
+          {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+    
+              gtag('config', 'G-SDEKWXGLEM');
+            `}
+        </Script>
         <SendEthForm
           openEthSend={openEthSend}
           countOpenEthSend={countOpenEthSend}
@@ -187,7 +201,10 @@ export default function Home({ homeContent }) {
         <ExperienceDetails experienceDetails={pageContent["SecondSection"]} />
         <Coursework courseworkDetails={pageContent["ThirdSection"]} />
       </main>
-      <Footer />
+      <Footer
+        footerTopRow={pageContent["Footer"]["TopRow"]}
+        footerBottomRow={pageContent["Footer"]["BottomRow"]}
+      />
     </div>
   );
 }

@@ -148,7 +148,7 @@ export const SlideshowBottomText = styled.div`
   padding: 0px 8vw;
   font-size: ${({ textSize }) => (textSize == "small" ? "1.8vw" : "2.3vw")};
   font-weight: 100;
-  line-height: 2.5vw;
+  line-height: ${({ textSize }) => (textSize == "small" ? "2.5vw" : "3.1vw")};
   margin-bottom: 15px;
 
   @media screen and (min-width: 1300px) {

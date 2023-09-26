@@ -43,6 +43,7 @@ export const FlipCardFront = styled.div`
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 1fr;
+  transform: rotateY(0deg);
 `;
 
 export const FlipCardFrontImage = styled.div`

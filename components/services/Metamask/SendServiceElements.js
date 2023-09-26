@@ -13,12 +13,12 @@ export const ArialContainer = styled.div`
 `;
 
 export const EthReceiverContainer = styled.div.attrs({
-    className: "input-group"
-  })``;
+  className: "input-group",
+})``;
 
 export const EthReceiverContent = styled.div.attrs({
-    className: "input-group-prepend"
-  })``;
+  className: "input-group-prepend",
+})``;
 
 export const EthReceiverText = styled.span.attrs({
   className: "input-group-text",
@@ -99,6 +99,7 @@ export const SendEthButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
+  padding-top: 8px;
 `;
 
 export const SendEthButton = styled.button.attrs({
