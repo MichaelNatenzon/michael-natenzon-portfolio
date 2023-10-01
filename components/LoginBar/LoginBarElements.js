@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 
 export const LoginBarContainer = styled(motion.div)`
   background: #12162b;
-  height: 205px;
   display: flex;
   align-items: bottom;
   font-size: 1rem;

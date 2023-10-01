@@ -103,7 +103,6 @@ const LoginMenu = ({
           >
             {formatGasCostETH} ETH (${formatGasCostUSD})
           </Link>
-
           {/* Only show BTC metrics if there are metrics to show */}
           {btcMetrics["usd"] == "" ? (
             ""
@@ -124,8 +123,9 @@ const LoginMenu = ({
             </>
           )}
           <br />
+
           <BtcEthLinksWrapper>
-            <button onClick={toggleBtcSendModal}>BTC</button>&#x2022;
+            <button onClick={toggleBtcSendModal}>Payment in BTC</button>&#x2022;
             <button onClick={toggleEthSendModal}>ETH</button>
           </BtcEthLinksWrapper>
         </LoginBarWrapper>
@@ -154,7 +154,7 @@ const LoginMenu = ({
                   </LoginLi>
                 }
               />
-              <UDLoginButton
+              {/* <UDLoginButton
                 setUserDetails={setUserDetails}
                 buttonContent={
                   <LoginLi variants={variantsItem}>
@@ -162,7 +162,7 @@ const LoginMenu = ({
                     <LoginLiText>Login with Unstoppable</LoginLiText>
                   </LoginLi>
                 }
-              />
+              /> */}
               <WhyLoginLi variants={variantsItem}>
                 <WhyLoginButton
                   onClick={() => {
